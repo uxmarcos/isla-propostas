@@ -3,6 +3,9 @@
 Este repositório publica propostas comerciais da Isla como páginas web na Vercel.
 Cada pasta `site/<slug>/index.html` vira `proposta.<dominio-da-isla>/<slug>`.
 
+## Visual
+Toda proposta segue o design system da Isla em `docs/design-system.md` (escuro, monocromático, Instrument Serif + Inter Tight, granulação, vidro escuro, movimento lento). O `modelo/proposta.html` já implementa esse padrão: reaproveite as classes dele. Diferença em relação à landing: o texto das propostas é em português.
+
 ## Ao criar uma proposta nova
 1. Escolha um slug em minúsculas, com hífens (ex: `padaria-do-ze`). Se não for informado, derive do nome do cliente.
 2. Rode `./scripts/nova-proposta.sh <slug> "<Nome do cliente>"` para partir do modelo,

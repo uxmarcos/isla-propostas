@@ -4,191 +4,337 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A0A0A">
   <title>Proposta Isla · Cliente Exemplo</title>
   <meta name="description" content="Proposta da Isla para Cliente Exemplo">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&display=swap">
   <style>
+    /* ===== Tokens (design system da Isla) ===== */
     :root {
-      --bg: #0d0f0e;
-      --surface: #161a18;
-      --line: #2a302d;
-      --text: #f2efe8;
-      --muted: #9aa39e;
-      --accent: #c8f169;
-      --serif: "Fraunces", Georgia, serif;
-      --sans: "Inter", system-ui, sans-serif;
+      --ink: #0A0A0A; --ink-2: #141414; --ink-3: #1F1F1F;
+      --porcelain: #F5F5F2; --grey-1: #A3A3A3; --grey-2: #6B6B6B;
+      --line: rgb(245 245 242 / .10); --line-strong: rgb(245 245 242 / .18);
+      --display: "Instrument Serif", "Times New Roman", serif;
+      --sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --ease-heavy: cubic-bezier(0.16, 1, 0.3, 1);
+      --gutter: 16px; --nav-h: 72px; --container: 1320px;
+      --glow: 0 0 40px rgb(245 245 242 / .08), 0 0 120px rgb(245 245 242 / .04);
     }
+    @media (min-width: 768px) { :root { --gutter: 32px; } }
+    @media (min-width: 1280px) { :root { --gutter: 48px; } }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+    html { background: var(--ink); color: var(--porcelain); color-scheme: dark; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-padding-top: var(--nav-h); }
+    body { font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: clip; background: var(--ink); }
+    ::selection { background: var(--porcelain); color: var(--ink); }
+    :focus-visible { outline: 1px solid var(--porcelain); outline-offset: 4px; border-radius: 4px; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+    h1 em, h2 em, h3 em { font-style: italic; }
+    p { text-wrap: pretty; }
+    .container { width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
 
-    header.top { position: fixed; inset: 0 0 auto 0; z-index: 10; backdrop-filter: blur(10px); background: color-mix(in srgb, var(--bg) 70%, transparent); border-bottom: 1px solid var(--line); }
-    header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-    .logo { font-family: var(--serif); font-size: 22px; letter-spacing: -0.02em; }
-    .logo span { color: var(--accent); }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); color: var(--text); background: transparent; font: 500 14px var(--sans); cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
-    .btn:hover { border-color: var(--accent); }
-    .btn.primary { background: var(--accent); color: #101210; border-color: var(--accent); }
+    /* ===== Granulação de filme ===== */
+    .grain { position: fixed; inset: -10%; z-index: 100; pointer-events: none; opacity: .045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain 1.2s steps(6) infinite; }
+    @keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)} 40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-1%)} 80%{transform:translate(3%,3%)} 100%{transform:translate(0,0)} }
 
-    .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: 140px 0 80px; position: relative; overflow: hidden; }
-    .hero video, .hero .glow { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-    .hero video { opacity: .35; }
-    .hero .glow { background: radial-gradient(60% 50% at 80% 20%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%); }
-    .hero .wrap { width: 100%; }
-    .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 8vw, 104px); line-height: .98; letter-spacing: -0.035em; }
-    h1 em { font-style: italic; color: var(--accent); }
-    .hero p.lead { max-width: 560px; margin-top: 28px; font-size: 18px; color: var(--muted); }
+    /* ===== Nav ===== */
+    .nav { position: fixed; top: 12px; left: 0; right: 0; z-index: 50; }
+    .nav .bar { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 10px 0 24px; border-radius: 9999px; }
+    .wordmark { font-family: var(--display); font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
+    .meta { font-size: 13px; color: var(--grey-1); }
 
-    section.block { padding: 110px 0; border-top: 1px solid var(--line); }
-    .num { font-family: var(--serif); color: var(--accent); font-size: 15px; margin-bottom: 14px; }
-    h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.5vw, 54px); line-height: 1.05; letter-spacing: -0.02em; max-width: 760px; }
-    .block p.text { max-width: 640px; margin-top: 22px; color: var(--muted); font-size: 17px; }
+    /* ===== Superfícies ===== */
+    .glass { background: linear-gradient(180deg, rgb(245 245 242 / .045), rgb(245 245 242 / .015)); background-color: rgb(20 20 20 / .55);
+      backdrop-filter: blur(20px) saturate(120%); -webkit-backdrop-filter: blur(20px) saturate(120%);
+      border: 1px solid var(--line); box-shadow: inset 0 1px 0 0 rgb(245 245 242 / .09), 0 30px 60px -30px rgb(0 0 0 / .8); }
+    .card { border-radius: 20px; padding: 32px; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
-    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
-    .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-    .card p { color: var(--muted); font-size: 15px; }
+    /* ===== Botões ===== */
+    .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 9999px; font: 500 14px var(--sans); letter-spacing: -0.005em; height: 44px; padding: 0 20px; cursor: pointer; text-decoration: none; transition: all .5s var(--ease-heavy); border: 1px solid transparent; }
+    .btn:active { transform: scale(.98); }
+    .btn.sm { height: 36px; padding: 0 16px; font-size: 13px; }
+    .btn.lg { height: 52px; padding: 0 28px; font-size: 15px; }
+    .btn.primary { background: var(--porcelain); color: var(--ink); box-shadow: inset 0 -1px 0 rgb(0 0 0 / .12); }
+    .btn.primary:hover { box-shadow: inset 0 -1px 0 rgb(0 0 0 / .12), 0 0 40px rgb(245 245 242 / .22); }
+    .btn.ghost { background: transparent; color: var(--porcelain); border-color: var(--line-strong); }
+    .btn.ghost:hover { border-color: rgb(245 245 242 / .5); background: rgb(245 245 242 / .04); }
+    .btn svg { width: 14px; height: 14px; transition: transform .5s var(--ease-heavy); }
+    .btn:hover svg { transform: translateX(2px); }
 
-    .timeline { margin-top: 48px; display: grid; gap: 0; }
-    .step { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
-    .step .when { color: var(--accent); font-weight: 500; }
-    .step h3 { font-size: 18px; font-weight: 600; }
-    .step p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+    /* ===== Tipografia ===== */
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--grey-1); }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--grey-2); }
+    .hero h1 { font-size: clamp(40px, 5.6vw, 88px); line-height: .98; letter-spacing: -0.025em; max-width: 18ch; margin-top: 28px; }
+    h2 { font-size: clamp(36px, 5vw, 72px); line-height: 1.02; letter-spacing: -0.02em; max-width: 16ch; margin-top: 24px; }
+    h3 { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.1; letter-spacing: -0.01em; }
+    .lede { font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: var(--grey-1); max-width: 56ch; margin-top: 28px; }
+    .small { font-size: 13px; color: var(--grey-1); }
 
-    .price { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-    .price .card.featured { border-color: var(--accent); }
-    .amount { font-family: var(--serif); font-size: 44px; letter-spacing: -0.02em; margin: 12px 0; }
-    .card ul { list-style: none; margin-top: 16px; display: grid; gap: 8px; }
-    .card li { color: var(--muted); font-size: 15px; padding-left: 20px; position: relative; }
-    .card li::before { content: ""; position: absolute; left: 0; top: .65em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    /* ===== Hero ===== */
+    .hero { position: relative; isolation: isolate; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--nav-h) + 6svh) 0 96px; overflow: hidden; }
+    .hero .bg { position: absolute; inset: 0; z-index: -1; }
+    .hero .bg svg { width: 100%; height: 100%; opacity: .6; }
+    .hero .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); opacity: .35; }
+    .hero .veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--ink) 0%, rgb(10 10 10 / .7) 35%, transparent 70%); }
+    .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+    .promises { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; font-size: 13px; color: var(--grey-1); }
+    .promises span.sep { color: var(--grey-2); }
 
-    .cta { text-align: center; padding: 140px 0; border-top: 1px solid var(--line); }
-    .cta h2 { margin: 0 auto; }
-    .cta .actions { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    footer { padding: 32px 0; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+    /* ===== Seções ===== */
+    section.block { padding-block: 128px; border-top: 1px solid var(--line); }
+    @media (min-width: 768px) { section.block { padding-block: 176px; } }
+    .split { display: grid; gap: 64px; }
+    @media (min-width: 1024px) { .split { grid-template-columns: 1fr 1fr; align-items: start; } }
 
-    /* motion */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: none; }
-    .hero .reveal:nth-child(2) { transition-delay: .12s; }
-    .hero .reveal:nth-child(3) { transition-delay: .24s; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+    .grid3 { display: grid; gap: 16px; margin-top: 64px; }
+    @media (min-width: 768px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
+    .card .idx { font-family: var(--display); font-size: 15px; color: var(--grey-2); }
+    .card h3 { margin-top: 40px; }
+    .card p { color: var(--grey-1); margin-top: 12px; }
 
-    @media (max-width: 600px) {
-      .step { grid-template-columns: 1fr; gap: 6px; }
-      section.block { padding: 80px 0; }
-      .hide-sm { display: none; }
+    /* Cronograma em linhas com hairline */
+    .rows { margin-top: 64px; border-top: 1px solid var(--line); }
+    .row { display: grid; grid-template-columns: 1fr; gap: 6px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    @media (min-width: 768px) { .row { grid-template-columns: 200px 1fr 1.4fr; gap: 32px; align-items: baseline; } }
+    .row .when { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--grey-2); }
+    .row .name { font-family: var(--display); font-size: 28px; line-height: 1.1; }
+    .row p { color: var(--grey-1); }
+
+    /* Métricas */
+    .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 24px; margin-top: 64px; }
+    @media (min-width: 768px) { .metrics { grid-template-columns: repeat(4, 1fr); } }
+    .metric .n { font-family: var(--display); font-size: clamp(32px, 3.2vw, 44px); line-height: 1; font-variant-numeric: tabular-nums; }
+    .metric .l { font-size: 13px; color: var(--grey-1); margin-top: 10px; }
+
+    /* Investimento: card obsidiana */
+    .prices { display: grid; gap: 16px; margin-top: 64px; }
+    @media (min-width: 900px) { .prices { grid-template-columns: 1fr 1fr; } }
+    .price { position: relative; border-radius: 28px; padding: 40px; border: 1px solid var(--line); overflow: hidden;
+      background: linear-gradient(160deg, rgb(245 245 242 / .07), transparent 38%), linear-gradient(180deg, #121212, #050505);
+      box-shadow: inset 0 1px 0 rgb(245 245 242 / .16), 0 60px 120px -40px rgb(0 0 0 / .9), 0 0 80px rgb(245 245 242 / .04); }
+    .price.featured { animation: float 9s ease-in-out infinite; }
+    .price::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .5s var(--ease-heavy);
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgb(245 245 242 / .1), transparent 60%); }
+    .price:hover::after { opacity: 1; }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+    .price .tier { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--grey-1); }
+    .price .amount { font-family: var(--display); font-size: clamp(44px, 5vw, 64px); line-height: 1; margin-top: 24px; font-variant-numeric: tabular-nums; }
+    .price .amount small { font-family: var(--sans); font-size: 14px; color: var(--grey-1); margin-left: 6px; }
+    .price ul { list-style: none; margin-top: 32px; border-top: 1px solid var(--line); }
+    .price li { padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--grey-1); font-size: 15px; display: flex; gap: 12px; }
+    .price li::before { content: "—"; color: var(--grey-2); }
+    .price.featured li { color: var(--porcelain); }
+
+    /* CTA final */
+    .cta { padding-block: 176px; border-top: 1px solid var(--line); text-align: center; position: relative; overflow: hidden; }
+    .cta::before { content: ""; position: absolute; left: 50%; top: 40%; width: 600px; height: 600px; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgb(245 245 242 / .06), transparent); pointer-events: none; }
+    .cta h2 { margin-inline: auto; }
+    .cta .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    footer { border-top: 1px solid var(--line); padding: 32px 0; }
+    footer .container { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--grey-2); }
+
+    /* ===== Movimento ===== */
+    .mask { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .06em .12em; margin: 0 -.06em -.12em; }
+    .word { display: inline-block; transform: translateY(105%); }
+    .is-in .word { animation: rise 1.15s var(--ease-heavy) forwards; animation-delay: calc(var(--i) * 60ms + var(--d, 0ms)); }
+    @keyframes rise { to { transform: translateY(0); } }
+    .hero-in { opacity: 0; transform: translateY(16px); transition: opacity 1.1s var(--ease-heavy), transform 1.1s var(--ease-heavy); transition-delay: var(--d, 0ms); }
+    .loaded .hero-in { opacity: 1; transform: none; }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 1.4s var(--ease-heavy), transform 1.4s var(--ease-heavy); transition-delay: var(--d, 0ms); }
+    .reveal.is-in { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      .meta.hide-sm { display: none; }
+      .promises .sep { display: none; }
+      .promises { flex-direction: column; gap: 4px; }
     }
 
-    /* "Baixar PDF" usa a impressão do navegador */
+    /* ===== PDF (impressão) ===== */
     @media print {
-      :root { --bg: #fff; --surface: #fff; --text: #111; --muted: #444; --line: #ddd; }
-      header.top, .hero video, .hero .glow, .no-print { display: none !important; }
-      .hero { min-height: auto; padding: 40px 0; }
-      .reveal { opacity: 1 !important; transform: none !important; }
-      section.block, .cta { padding: 40px 0; break-inside: avoid; }
+      :root { --ink: #fff; --porcelain: #111; --grey-1: #444; --grey-2: #777; --line: #ddd; --line-strong: #ccc; }
+      html, body { background: #fff; color: #111; }
+      .grain, .nav, .hero .bg, .hero .veil, .no-print { display: none !important; }
+      .word, .hero-in, .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .hero { min-height: auto; padding: 24px 0 48px; }
+      section.block, .cta { padding-block: 48px; break-inside: avoid; }
+      .glass, .price { background: #fff !important; box-shadow: none !important; border: 1px solid #ddd; backdrop-filter: none; animation: none; }
     }
   </style>
 </head>
 <body>
-  <header class="top">
-    <div class="wrap">
-      <div class="logo">isla<span>.</span></div>
-      <button class="btn no-print" onclick="window.print()">Baixar PDF</button>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="nav no-print">
+    <div class="container">
+      <div class="bar glass">
+        <span class="wordmark">Isla</span>
+        <span class="meta hide-sm">Proposta para Cliente Exemplo</span>
+        <button class="btn primary sm" onclick="window.print()">Baixar PDF</button>
+      </div>
     </div>
-  </header>
+  </nav>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
-      <!-- Vídeo opcional: troque o src ou apague a tag <video> -->
-      <!-- <video src="video.mp4" autoplay muted loop playsinline></video> -->
-      <div class="glow"></div>
-      <div class="wrap">
-        <p class="eyebrow reveal">Proposta · Cliente Exemplo · 10/2026</p>
-        <h1 class="reveal">Uma frase forte sobre<br>o que vamos <em>construir</em>.</h1>
-        <p class="lead reveal">Resumo de uma ou duas linhas: o problema do cliente e o resultado que a Isla vai entregar.</p>
+      <div class="bg" aria-hidden="true">
+        <!-- Vídeo opcional (fica em preto e branco): coloque o .mp4 na pasta da proposta e descomente -->
+        <!-- <video src="video.mp4" autoplay muted loop playsinline></video> -->
+        <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" stroke="rgb(245 245 242 / .12)" stroke-width="1">
+          <g transform="translate(860 360)">
+            <ellipse rx="80" ry="54"/><ellipse rx="150" ry="104"/><ellipse rx="230" ry="160"/><ellipse rx="320" ry="222"/><ellipse rx="420" ry="292"/><ellipse rx="530" ry="370"/><ellipse rx="650" ry="455"/>
+          </g>
+          <g transform="translate(1080 140) rotate(-18)">
+            <ellipse rx="40" ry="26"/><ellipse rx="90" ry="60"/><ellipse rx="150" ry="100"/>
+          </g>
+        </svg>
       </div>
-    </section>
+      <div class="veil" aria-hidden="true"></div>
 
-    <section class="block">
-      <div class="wrap">
-        <p class="num reveal">01 — Contexto</p>
-        <h2 class="reveal">O que entendemos do momento de vocês.</h2>
-        <p class="text reveal">Descreva o cenário atual, as dores e a oportunidade. Mostre que vocês ouviram o cliente.</p>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="wrap">
-        <p class="num reveal">02 — Solução</p>
-        <h2 class="reveal">O que a Isla vai entregar.</h2>
-        <div class="grid">
-          <div class="card reveal"><h3>Entrega 1</h3><p>O que é e qual resultado gera.</p></div>
-          <div class="card reveal"><h3>Entrega 2</h3><p>O que é e qual resultado gera.</p></div>
-          <div class="card reveal"><h3>Entrega 3</h3><p>O que é e qual resultado gera.</p></div>
+      <div class="container">
+        <span class="eyebrow hero-in" style="--d:100ms">Proposta · Cliente Exemplo · 10/2026</span>
+        <h1 class="rise" data-delay="180">Uma frase curta sobre o que vamos <em>construir juntos</em>.</h1>
+        <p class="lede hero-in" style="--d:650ms">Resumo de uma ou duas linhas: o desafio do cliente e o resultado que a Isla vai entregar.</p>
+        <div class="actions hero-in no-print" style="--d:800ms">
+          <a class="btn primary lg" href="#investimento">Ver investimento
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
+          <a class="btn ghost lg" href="#escopo">Ver escopo</a>
+        </div>
+        <div class="promises hero-in" style="--d:900ms">
+          <span>Promessa 1</span><span class="sep">·</span><span>Promessa 2</span><span class="sep">·</span><span>Promessa 3</span>
         </div>
       </div>
     </section>
 
+    <!-- 01 CONTEXTO -->
     <section class="block">
-      <div class="wrap">
-        <p class="num reveal">03 — Cronograma</p>
-        <h2 class="reveal">Como vamos trabalhar.</h2>
-        <div class="timeline">
-          <div class="step reveal"><div class="when">Semana 1</div><div><h3>Imersão</h3><p>Descrição da etapa.</p></div></div>
-          <div class="step reveal"><div class="when">Semanas 2–3</div><div><h3>Construção</h3><p>Descrição da etapa.</p></div></div>
-          <div class="step reveal"><div class="when">Semana 4</div><div><h3>Entrega</h3><p>Descrição da etapa.</p></div></div>
+      <div class="container split">
+        <div>
+          <span class="eyebrow reveal">01 · Contexto</span>
+          <h2 class="rise">O que entendemos do <em>momento de vocês</em>.</h2>
         </div>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="wrap">
-        <p class="num reveal">04 — Investimento</p>
-        <h2 class="reveal">Opções de investimento.</h2>
-        <div class="price">
-          <div class="card reveal">
-            <h3>Essencial</h3>
-            <div class="amount">R$ 0.000</div>
-            <ul><li>Item incluso</li><li>Item incluso</li></ul>
+        <div>
+          <p class="lede reveal">Descreva o cenário atual, as dores e a oportunidade. Mostre que a Isla ouviu o cliente.</p>
+          <div class="metrics" style="grid-template-columns: repeat(2, 1fr)">
+            <div class="metric reveal"><div class="n">[X]</div><div class="l">Dado do cliente</div></div>
+            <div class="metric reveal" style="--d:120ms"><div class="n">[X]</div><div class="l">Dado do cliente</div></div>
           </div>
-          <div class="card featured reveal">
-            <h3>Completo</h3>
-            <div class="amount">R$ 0.000</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 ESCOPO -->
+    <section class="block" id="escopo">
+      <div class="container">
+        <span class="eyebrow reveal">02 · Escopo</span>
+        <h2 class="rise">O que a Isla <em>vai entregar</em>.</h2>
+        <div class="grid3">
+          <div class="card glass reveal"><span class="idx">i.</span><h3>Entrega um</h3><p>O que é e qual resultado gera para o cliente.</p></div>
+          <div class="card glass reveal" style="--d:120ms"><span class="idx">ii.</span><h3>Entrega dois</h3><p>O que é e qual resultado gera para o cliente.</p></div>
+          <div class="card glass reveal" style="--d:240ms"><span class="idx">iii.</span><h3>Entrega três</h3><p>O que é e qual resultado gera para o cliente.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 CRONOGRAMA -->
+    <section class="block">
+      <div class="container">
+        <span class="eyebrow reveal">03 · Cronograma</span>
+        <h2 class="rise">Como vamos <em>trabalhar</em>.</h2>
+        <div class="rows">
+          <div class="row reveal"><span class="when">Semana [X]</span><span class="name">Imersão</span><p>Descrição da etapa.</p></div>
+          <div class="row reveal"><span class="when">Semanas [X]</span><span class="name">Construção</span><p>Descrição da etapa.</p></div>
+          <div class="row reveal"><span class="when">Semana [X]</span><span class="name">Entrega</span><p>Descrição da etapa.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 INVESTIMENTO -->
+    <section class="block" id="investimento">
+      <div class="container">
+        <span class="eyebrow reveal">04 · Investimento</span>
+        <h2 class="rise">Um investimento, <em>dois caminhos</em>.</h2>
+        <div class="prices">
+          <div class="price reveal">
+            <span class="tier">Essencial</span>
+            <div class="amount">R$ [VALOR]<small>/mês</small></div>
+            <ul><li>Item incluso</li><li>Item incluso</li><li>Item incluso</li></ul>
+          </div>
+          <div class="price featured reveal" style="--d:120ms">
+            <span class="tier">Completo · recomendado</span>
+            <div class="amount">R$ [VALOR]<small>/mês</small></div>
             <ul><li>Tudo do Essencial</li><li>Item incluso</li><li>Item incluso</li></ul>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta">
-      <div class="wrap">
-        <h2 class="reveal">Bora começar?</h2>
+      <div class="container">
+        <span class="eyebrow reveal">Próximo passo</span>
+        <h2 class="rise">Vocês aprovam. <em>A gente faz</em>.</h2>
         <div class="actions no-print">
-          <a class="btn primary" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Vi%20a%20proposta%20da%20Isla" target="_blank" rel="noopener">Falar no WhatsApp</a>
-          <button class="btn" onclick="window.print()">Baixar PDF</button>
+          <a class="btn primary lg" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Vi%20a%20proposta%20da%20Isla" target="_blank" rel="noopener">Falar com a Isla
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
+          <button class="btn ghost lg" onclick="window.print()">Baixar PDF</button>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">Isla · Proposta válida por 15 dias · Documento confidencial</div>
+    <div class="container"><span>Isla</span><span>Proposta válida por [X] dias · Documento confidencial</span></div>
   </footer>
 
   <script>
-    // Animação de entrada ao rolar
+    // Rise: quebra os títulos .rise em palavras mascaradas
+    document.querySelectorAll('.rise').forEach((h) => {
+      const base = parseInt(h.dataset.delay || '0', 10);
+      let i = 0;
+      const wrap = (node) => {
+        [...node.childNodes].forEach((n) => {
+          if (n.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+              const m = document.createElement('span'); m.className = 'mask';
+              const w = document.createElement('span'); w.className = 'word';
+              w.style.setProperty('--i', i++); w.style.setProperty('--d', base + 'ms');
+              w.textContent = part; m.appendChild(w); frag.appendChild(m);
+            });
+            n.replaceWith(frag);
+          } else if (n.nodeType === 1) { wrap(n); }
+        });
+      };
+      wrap(h);
+    });
+
+    // Hero toca no load; o resto, uma vez ao entrar na tela
+    requestAnimationFrame(() => {
+      document.body.classList.add('loaded');
+      document.querySelector('.hero .rise')?.classList.add('is-in');
+    });
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    window.addEventListener('beforeprint', () => document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in')));
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.reveal, section:not(.hero) .rise').forEach((el) => io.observe(el));
+
+    // Reflexo do card de preço segue o cursor
+    document.querySelectorAll('.price').forEach((c) => c.addEventListener('pointermove', (e) => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }));
+
+    // Antes de imprimir, mostra tudo
+    window.addEventListener('beforeprint', () => document.querySelectorAll('.reveal, .rise').forEach((el) => el.classList.add('is-in')));
   </script>
-  <!-- Vercel Web Analytics: mostra quando o cliente abriu (ative em Analytics no projeto da Vercel) -->
+  <!-- Vercel Web Analytics: mostra quando o cliente abriu a proposta -->
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
