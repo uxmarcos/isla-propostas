@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Isla · {{CLIENTE}}</title>
+  <meta name="description" content="Proposta da Isla para {{CLIENTE}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0f0e;
+      --surface: #161a18;
+      --line: #2a302d;
+      --text: #f2efe8;
+      --muted: #9aa39e;
+      --accent: #c8f169;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Inter", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+    header.top { position: fixed; inset: 0 0 auto 0; z-index: 10; backdrop-filter: blur(10px); background: color-mix(in srgb, var(--bg) 70%, transparent); border-bottom: 1px solid var(--line); }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font-family: var(--serif); font-size: 22px; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); color: var(--text); background: transparent; font: 500 14px var(--sans); cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; }
+    .btn:hover { border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #101210; border-color: var(--accent); }
+
+    .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: 140px 0 80px; position: relative; overflow: hidden; }
+    .hero video, .hero .glow { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+    .hero video { opacity: .35; }
+    .hero .glow { background: radial-gradient(60% 50% at 80% 20%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%); }
+    .hero .wrap { width: 100%; }
+    .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 8vw, 104px); line-height: .98; letter-spacing: -0.035em; }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero p.lead { max-width: 560px; margin-top: 28px; font-size: 18px; color: var(--muted); }
+
+    section.block { padding: 110px 0; border-top: 1px solid var(--line); }
+    .num { font-family: var(--serif); color: var(--accent); font-size: 15px; margin-bottom: 14px; }
+    h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.5vw, 54px); line-height: 1.05; letter-spacing: -0.02em; max-width: 760px; }
+    .block p.text { max-width: 640px; margin-top: 22px; color: var(--muted); font-size: 17px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+    .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    .timeline { margin-top: 48px; display: grid; gap: 0; }
+    .step { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .step .when { color: var(--accent); font-weight: 500; }
+    .step h3 { font-size: 18px; font-weight: 600; }
+    .step p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+    .price { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .price .card.featured { border-color: var(--accent); }
+    .amount { font-family: var(--serif); font-size: 44px; letter-spacing: -0.02em; margin: 12px 0; }
+    .card ul { list-style: none; margin-top: 16px; display: grid; gap: 8px; }
+    .card li { color: var(--muted); font-size: 15px; padding-left: 20px; position: relative; }
+    .card li::before { content: ""; position: absolute; left: 0; top: .65em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+    .cta { text-align: center; padding: 140px 0; border-top: 1px solid var(--line); }
+    .cta h2 { margin: 0 auto; }
+    .cta .actions { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    footer { padding: 32px 0; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+
+    /* motion */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .hero .reveal:nth-child(2) { transition-delay: .12s; }
+    .hero .reveal:nth-child(3) { transition-delay: .24s; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    @media (max-width: 600px) {
+      .step { grid-template-columns: 1fr; gap: 6px; }
+      section.block { padding: 80px 0; }
+      .hide-sm { display: none; }
+    }
+
+    /* "Baixar PDF" usa a impressão do navegador */
+    @media print {
+      :root { --bg: #fff; --surface: #fff; --text: #111; --muted: #444; --line: #ddd; }
+      header.top, .hero video, .hero .glow, .no-print { display: none !important; }
+      .hero { min-height: auto; padding: 40px 0; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      section.block, .cta { padding: 40px 0; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="logo">isla<span>.</span></div>
+      <button class="btn no-print" onclick="window.print()">Baixar PDF</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- Vídeo opcional: troque o src ou apague a tag <video> -->
+      <!-- <video src="video.mp4" autoplay muted loop playsinline></video> -->
+      <div class="glow"></div>
+      <div class="wrap">
+        <p class="eyebrow reveal">Proposta · {{CLIENTE}} · {{DATA}}</p>
+        <h1 class="reveal">Uma frase forte sobre<br>o que vamos <em>construir</em>.</h1>
+        <p class="lead reveal">Resumo de uma ou duas linhas: o problema do cliente e o resultado que a Isla vai entregar.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="num reveal">01 — Contexto</p>
+        <h2 class="reveal">O que entendemos do momento de vocês.</h2>
+        <p class="text reveal">Descreva o cenário atual, as dores e a oportunidade. Mostre que vocês ouviram o cliente.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="num reveal">02 — Solução</p>
+        <h2 class="reveal">O que a Isla vai entregar.</h2>
+        <div class="grid">
+          <div class="card reveal"><h3>Entrega 1</h3><p>O que é e qual resultado gera.</p></div>
+          <div class="card reveal"><h3>Entrega 2</h3><p>O que é e qual resultado gera.</p></div>
+          <div class="card reveal"><h3>Entrega 3</h3><p>O que é e qual resultado gera.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="num reveal">03 — Cronograma</p>
+        <h2 class="reveal">Como vamos trabalhar.</h2>
+        <div class="timeline">
+          <div class="step reveal"><div class="when">Semana 1</div><div><h3>Imersão</h3><p>Descrição da etapa.</p></div></div>
+          <div class="step reveal"><div class="when">Semanas 2–3</div><div><h3>Construção</h3><p>Descrição da etapa.</p></div></div>
+          <div class="step reveal"><div class="when">Semana 4</div><div><h3>Entrega</h3><p>Descrição da etapa.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="num reveal">04 — Investimento</p>
+        <h2 class="reveal">Opções de investimento.</h2>
+        <div class="price">
+          <div class="card reveal">
+            <h3>Essencial</h3>
+            <div class="amount">R$ 0.000</div>
+            <ul><li>Item incluso</li><li>Item incluso</li></ul>
+          </div>
+          <div class="card featured reveal">
+            <h3>Completo</h3>
+            <div class="amount">R$ 0.000</div>
+            <ul><li>Tudo do Essencial</li><li>Item incluso</li><li>Item incluso</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <h2 class="reveal">Bora começar?</h2>
+        <div class="actions no-print">
+          <a class="btn primary" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Vi%20a%20proposta%20da%20Isla" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <button class="btn" onclick="window.print()">Baixar PDF</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Isla · Proposta válida por 15 dias · Documento confidencial</div>
+  </footer>
+
+  <script>
+    // Animação de entrada ao rolar
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    window.addEventListener('beforeprint', () => document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in')));
+  </script>
+  <!-- Vercel Web Analytics: mostra quando o cliente abriu (ative em Analytics no projeto da Vercel) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
