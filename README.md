@@ -22,6 +22,13 @@ vercel.json           → configurações (noindex, URLs limpas, rotas externas)
 ## Criar uma proposta
 
 ### Opção A: apresentação feita no Claude Design
+Se baixou o projeto inteiro (pasta com `.dc.html`, `support.js`, `assets/`…):
+```bash
+python3 scripts/importar-deck.py ~/Documents/ISLA/Clientes/Abacate/"Abacate - Pitch" "Abacate Pitch.dc.html" abacate "Isla × Abacate · Proposta"
+git add site/abacate && git commit -m "Proposta: Abacate" && git push
+```
+
+Se exportou como **HTML** (arquivo único):
 1. No Claude Design, exporte/baixe a apresentação como **HTML** (arquivo único).
 2. Rode:
    ```bash
