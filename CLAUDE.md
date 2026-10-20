@@ -21,9 +21,10 @@ Toda proposta segue o design system da Isla em `docs/design-system.md` (escuro, 
 
 ## Decks do Claude Design (`.dc.html`)
 Apresentações em slides vindas do Claude Design são publicadas como estão (visual e fontes do próprio deck, formato 1920×1080), sem adaptar ao `modelo/proposta.html`.
-1. O projeto exportado é uma pasta com `<Nome>.dc.html`, `support.js`, `deck-stage.js`, `image-slot.js`, `assets/` e às vezes `figma/`. Os do usuário ficam em `~/Documents/ISLA/Clientes/<Cliente>/`. Anexos no chat chegam só como texto, sem imagens: peça a pasta.
-2. Rode `python3 scripts/importar-deck.py <pasta> "<Nome>.dc.html" <slug> "<título>"`. Ele copia só o necessário, troca caminhos relativos por `/<slug>/...` (a Vercel serve `/<slug>` sem barra final, então caminho relativo quebra), esconde a barra de miniaturas do editor e adiciona noindex, "Baixar PDF" e Analytics.
-3. `<image-slot>` vazio no deck aparece como placeholder: preencha com `src="/<slug>/assets/..."` se houver a imagem no projeto.
+1. O projeto exportado é uma pasta com `<Nome>.dc.html`, `support.js`, `deck-stage.js`, `image-slot.js`, `assets/` e às vezes `figma/`. Os do usuário ficam em `~/Documents/ISLA/Clientes/<Cliente>/` (procure com `mdfind -name isla-export.json`). Anexos no chat chegam só como texto, sem imagens: peça a pasta. O prompt que o usuário cola no Claude Design para preparar a exportação está em `docs/prompt-exportar-claude-design.md`.
+2. Com `isla-export.json` na pasta: `python3 scripts/importar-deck.py <pasta>` importa todas as propostas listadas (pula `"tipo": "modelo"` e slugs que já existem; `--atualizar` substitui). Sem manifesto: `python3 scripts/importar-deck.py <pasta> "<Nome>.dc.html" <slug> "<título>"`.
+   O script copia só o necessário, transforma imagens do `.image-slots.state.json` em arquivos, troca caminhos relativos por `/<slug>/...` (a Vercel serve `/<slug>` sem barra final, então caminho relativo quebra) e aplica os controles da Isla: setas de navegação, "Baixar PDF", barra de miniaturas e barrinha nativa do deck escondidas, noindex e Analytics. Para reaplicar só os controles numa página já publicada: `--controles site/<slug>`.
+3. `<image-slot>` vazio no deck aparece como placeholder (o script avisa): preencha com `src="/<slug>/assets/..."` se houver a imagem no projeto.
 4. Confira servindo `site/` localmente (`python3 -m http.server`) em 1600×900 e 380px antes do push.
 
 ## Painel (página inicial)

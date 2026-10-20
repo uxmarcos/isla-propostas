@@ -4,21 +4,40 @@
 <meta charset="utf-8">
 <title>Isla × Zazos · Company page</title>
 <meta name="robots" content="noindex, nofollow">
+<!-- isla:controles -->
 <script>
-// Esconde a barra de miniaturas do editor do Claude Design para quem vê a proposta.
+// Para quem vê a proposta: esconde a barra de miniaturas do editor do Claude Design
+// e a barrinha de controles nativa do deck (as setas da Isla substituem).
 new MutationObserver(function () {
-  document.querySelectorAll('deck-stage:not([no-rail])').forEach(function (d) { d.setAttribute('no-rail', ''); });
+  document.querySelectorAll('deck-stage:not([no-rail])').forEach(function (d) {
+    d.setAttribute('no-rail', '');
+    if (d.shadowRoot) {
+      var s = document.createElement('style');
+      s.textContent = '.overlay{display:none!important}';
+      d.shadowRoot.appendChild(s);
+    }
+  });
 }).observe(document.documentElement, { childList: true, subtree: true });
 </script>
 <style>
-.isla-pdf{position:fixed;bottom:16px;right:16px;z-index:2147483001;appearance:none;cursor:pointer;
-  font:500 13px/1 Manrope,system-ui,sans-serif;letter-spacing:.01em;color:#fff;
-  padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.14);
-  background:rgba(20,20,20,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+.isla-pdf,.isla-seta{position:fixed;z-index:2147483001;appearance:none;cursor:pointer;color:#fff;
+  border:1px solid rgba(255,255,255,.14);background:rgba(20,20,20,.55);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   opacity:.75;transition:opacity .3s ease,background .3s ease}
-.isla-pdf:hover,.isla-pdf:focus-visible{opacity:1;background:rgba(40,40,40,.7)}
-@media print{.isla-pdf{display:none!important}}
+.isla-pdf{bottom:16px;right:16px;padding:10px 16px;border-radius:999px;
+  font:500 13px/1 Manrope,system-ui,sans-serif;letter-spacing:.01em}
+.isla-seta{top:50%;translate:0 -50%;width:52px;height:52px;border-radius:50%;padding:0;display:grid;place-items:center}
+.isla-seta svg{width:20px;height:20px}
+.isla-ant{left:16px}.isla-prox{right:16px}
+.isla-pdf:hover,.isla-pdf:focus-visible,.isla-seta:hover,.isla-seta:focus-visible{opacity:1;background:rgba(40,40,40,.75)}
+.isla-seta:disabled{opacity:.18;cursor:default;background:rgba(20,20,20,.55)}
+@media (max-width:640px){
+  .isla-seta{top:auto;bottom:16px;translate:none;width:44px;height:44px}
+  .isla-ant{left:16px}.isla-prox{left:68px;right:auto}
+}
+@media print{.isla-pdf,.isla-seta{display:none!important}}
 </style>
+<!-- /isla:controles -->
 
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A0A0A"/><text x="50" y="62" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#F5F5F2">isla</text></svg></template>
 
@@ -133,7 +152,22 @@ deck-stage>section[data-deck-active]>*:nth-child(n+4){animation-delay:270ms}
 
 </x-import>
 </x-dc>
+<!-- isla:controles -->
+<button class="isla-seta isla-ant" type="button" aria-label="Slide anterior" onclick="islaIr(-1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button class="isla-seta isla-prox" type="button" aria-label="Próximo slide" onclick="islaIr(1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
 <button class="isla-pdf" type="button" onclick="window.print()">Baixar PDF</button>
+<script>
+function islaIr(d, b) {
+  var s = document.querySelector('deck-stage');
+  if (s && s.next) d < 0 ? s.prev() : s.next();
+  if (b) b.blur(); // sem isso, Espaço com o botão em foco avançaria dois slides
+}
+document.addEventListener('slidechange', function (e) {
+  document.querySelector('.isla-ant').disabled = e.detail.index <= 0;
+  document.querySelector('.isla-prox').disabled = e.detail.index >= e.detail.total - 1;
+});
+</script>
+<!-- /isla:controles -->
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
