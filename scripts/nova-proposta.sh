@@ -38,7 +38,10 @@ else
   echo "Proposta criada a partir do modelo em site/$SLUG/index.html"
 fi
 
+node "$RAIZ/scripts/gerar-painel.mjs" --sem-miniaturas || true
+
 echo ""
 echo "Próximo passo:"
-echo "  git add site/$SLUG && git commit -m \"Proposta: $CLIENTE\" && git push"
+echo "  node scripts/gerar-painel.mjs   # atualiza o painel (com miniatura) depois de editar"
+echo "  git add site && git commit -m \"Proposta: $CLIENTE\" && git push"
 echo "Depois do push, fica no ar em: https://proposta.<dominio-da-isla>/$SLUG"

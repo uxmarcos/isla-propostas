@@ -14,7 +14,7 @@ O que faz:
   - esconde a barra de miniaturas do editor do Claude Design.
 Image-slots vazios no Claude Design continuam vazios: preencha com src="/<slug>/assets/..." depois.
 """
-import re, sys, shutil, pathlib
+import re, sys, shutil, pathlib, subprocess
 
 if len(sys.argv) != 5:
     sys.exit(__doc__)
@@ -66,3 +66,4 @@ html = html.replace('<script defer src="/_vercel/insights/script.js">',
                     '<script defer src="/_vercel/insights/script.js">', 1)
 (dst / 'index.html').write_text(html)
 print(f'Pronto: site/{slug}/index.html')
+subprocess.run(['node', str(dst.parent.parent / 'scripts' / 'gerar-painel.mjs')], check=False)
