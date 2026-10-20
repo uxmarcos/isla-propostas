@@ -16,17 +16,17 @@ site/
   exemplo/index.html  → proposta.isla.../exemplo
   abacate/index.html  → proposta.isla.../abacate
 modelo/proposta.html  → modelo base (não vai pro ar)
-middleware.js         → pede usuário e senha no painel
+middleware.js         → login do painel (página /login, cookie de sessão)
 scripts/gerar-painel.mjs, importar-deck.py, nova-proposta.sh
 vercel.json           → configurações (noindex, URLs limpas, rotas externas)
 ```
 
 ## Painel
 
-A página inicial lista todas as apresentações, com miniatura, busca e "Copiar link". Só abre com usuário e senha; os links das propostas continuam abertos para os clientes.
+A página inicial lista todas as apresentações, com miniatura, busca e "Copiar link". Só abre com login (e-mail e senha) em `/login`; os links das propostas continuam abertos para os clientes.
 
 - **Atualizar:** `node scripts/gerar-painel.mjs` e push (os scripts de importação já fazem a primeira parte).
-- **Dar/tirar acesso:** na Vercel, projeto `isla-propostas` → Settings → Environment Variables → `PAINEL_ACESSOS` (Production), no formato `marcos:senha,ana:outrasenha`. Depois, faça um redeploy (Deployments → ⋯ → Redeploy) para valer.
+- **Dar/tirar acesso:** na Vercel, projeto `isla-propostas` → Settings → Environment Variables → `PAINEL_ACESSOS` (Production), no formato `marcos@isla.to:senha,ana@isla.to:outrasenha`. `PAINEL_SEGREDO` assina as sessões (trocar desloga todo mundo). Depois, faça um redeploy (Deployments → ⋯ → Redeploy) para valer.
 
 ## Criar uma proposta
 

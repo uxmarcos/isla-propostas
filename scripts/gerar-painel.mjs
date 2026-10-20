@@ -40,10 +40,15 @@ function lerApresentacoes() {
     .map((d) => {
       const slug = d.name;
       const html = fs.readFileSync(path.join(SITE, slug, 'index.html'), 'utf8');
-      const titulo = (html.match(/<title>([^<]*)<\/title>/i)?.[1] || slug).trim();
+      const titulo = (html.match(/<title>([^<]*)<\/title>/i)?.[1] || slug).trim()
+        .replace(/&amp;/g, '&').replace(/&lt;/g, '<');
       const deck = html.includes('deck-stage');
       const slides = deck ? (html.match(/<section\b[^>]*\bdata-label=/g) || []).length : 0;
-      return { slug, titulo, tipo: deck ? 'deck' : 'pagina', slides, atualizado: dataDaPasta(slug) };
+      // "Isla × Cliente · Assunto" (padrão do importar-deck) ou "Proposta Isla · Cliente" (modelo antigo).
+      const m = titulo.match(/^Isla\s*×\s*(.+?)\s*·\s*(.+)$/) || titulo.match(/^(?:Proposta\s+)?Isla\s*·\s*(.+)$/);
+      const cliente = m ? m[1].trim() : titulo;
+      const assunto = m && m[2] ? m[2].trim() : 'Proposta';
+      return { slug, titulo, cliente, assunto, tipo: deck ? 'deck' : 'pagina', slides, atualizado: dataDaPasta(slug) };
     })
     .sort((a, b) => b.atualizado.localeCompare(a.atualizado));
 }
@@ -102,6 +107,8 @@ function removerMiniaturasOrfas(lista) {
   for (const f of fs.readdirSync(THUMBS)) if (!vivos.has(f)) fs.rmSync(path.join(THUMBS, f));
 }
 
+const semAcento = (t) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
 const fmtData = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'America/Sao_Paulo' });
 
 function card(a, i) {
@@ -109,17 +116,17 @@ function card(a, i) {
   const temThumb = fs.existsSync(thumb);
   const v = temThumb ? Math.round(fs.statSync(thumb).mtimeMs / 1000) : 0;
   const meta = a.tipo === 'deck' ? `Deck${a.slides ? ` · ${a.slides} slides` : ''}` : 'Página';
-  const busca = `${a.titulo} ${a.slug}`.toLowerCase();
+  const busca = semAcento(`${a.cliente} ${a.titulo} ${a.slug}`);
   return `
       <article class="card" data-tipo="${a.tipo}" data-busca="${esc(busca)}" style="--i:${i}">
         <a class="thumb" href="/${esc(a.slug)}" target="_blank" rel="noopener" aria-label="Abrir ${esc(a.titulo)}">
           ${temThumb
             ? `<img src="/_painel/thumbs/${esc(a.slug)}.jpg?v=${v}" alt="" loading="lazy" decoding="async">`
-            : `<span class="thumb-vazio">${esc(a.titulo)}</span>`}
+            : `<span class="thumb-vazio">${esc(a.cliente)}</span>`}
         </a>
         <div class="corpo">
-          <span class="eyebrow">${meta}</span>
-          <h2>${esc(a.titulo)}</h2>
+          <span class="eyebrow">${esc(a.assunto)} · ${meta}</span>
+          <h2>${esc(a.cliente)}</h2>
           <p class="meta"><span class="slug">/${esc(a.slug)}</span><span class="sep">·</span>atualizada em ${fmtData.format(new Date(a.atualizado))}</p>
           <div class="acoes">
             <a class="btn btn-primario" href="/${esc(a.slug)}" target="_blank" rel="noopener">Abrir</a>
@@ -167,7 +174,10 @@ function pagina(lista) {
     @keyframes grain { 0%{transform:translate(0,0)} 33%{transform:translate(-3%,2%)} 66%{transform:translate(2%,-3%)} 100%{transform:translate(0,0)} }
 
     .container { width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
-    header { padding-top: clamp(72px, 12vw, 152px); padding-bottom: 48px; }
+    .topo { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; }
+    .marca { font-family: "Instrument Serif", serif; font-style: italic; font-size: 30px; line-height: 1; }
+    .sair { height: 36px; padding: 0 16px; font-size: 13px; }
+    header { padding-top: clamp(48px, 9vw, 120px); padding-bottom: 48px; }
     .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--grey-1); }
     header .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--grey-2); }
     h1 { font-family: "Instrument Serif", "Times New Roman", serif; font-weight: 400; font-size: clamp(44px, 6.4vw, 96px); line-height: .98; letter-spacing: -0.025em; margin-top: 24px; max-width: 14ch; text-wrap: balance; }
@@ -230,6 +240,8 @@ function pagina(lista) {
   </div>
   <div class="grain" aria-hidden="true"></div>
 
+  <nav class="topo container"><span class="marca">isla</span><a class="btn btn-ghost sair" href="/sair">Sair</a></nav>
+
   <header class="container">
     <span class="eyebrow">Isla · Propostas</span>
     <h1>Biblioteca de <em>apresentações.</em></h1>
@@ -240,7 +252,7 @@ function pagina(lista) {
     <div class="barra">
       <label class="busca">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" id="busca" placeholder="Buscar por cliente ou link" autocomplete="off" aria-label="Buscar apresentações">
+        <input type="search" id="busca" placeholder="Buscar por empresa" autocomplete="off" aria-label="Buscar por empresa">
       </label>
       <div class="filtros" role="group" aria-label="Filtrar por tipo">
         <button class="chip" type="button" data-filtro="todas" aria-pressed="true">Todas<span>${lista.length}</span></button>
@@ -264,7 +276,7 @@ function pagina(lista) {
       var chips = [].slice.call(document.querySelectorAll('.chip'));
       var filtro = 'todas';
       function aplicar() {
-        var q = busca.value.trim().toLowerCase();
+        var q = busca.value.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
         var visiveis = 0;
         cards.forEach(function (c) {
           var ok = (filtro === 'todas' || c.dataset.tipo === filtro) && (!q || c.dataset.busca.indexOf(q) !== -1);

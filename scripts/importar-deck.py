@@ -57,7 +57,25 @@ new MutationObserver(function () {
   .isla-seta{top:auto;bottom:16px;translate:none;width:44px;height:44px}
   .isla-ant{left:16px}.isla-prox{left:68px;right:auto}
 }
-@media print{.isla-pdf,.isla-seta{display:none!important}}
+/* Celular deitado: o slide ocupa a altura toda; setas menores nas laterais, sem botão de PDF. */
+@media (max-height:500px) and (orientation:landscape){
+  .isla-seta{width:40px;height:40px;opacity:.6}
+  .isla-ant{left:max(8px,env(safe-area-inset-left))}.isla-prox{right:max(8px,env(safe-area-inset-right))}
+  .isla-pdf{display:none}
+}
+/* Celular em pé: sugere girar. Some sozinho depois de alguns segundos. */
+.isla-girar{display:none}
+@media (max-width:640px) and (orientation:portrait){
+  .isla-girar{display:flex;position:fixed;top:max(16px,env(safe-area-inset-top));left:50%;translate:-50% 0;z-index:2147483001;
+    align-items:center;gap:10px;padding:10px 16px;border-radius:999px;white-space:nowrap;pointer-events:none;
+    font:500 13px/1 Manrope,system-ui,sans-serif;color:#fff;border:1px solid rgba(255,255,255,.14);
+    background:rgba(20,20,20,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    animation:islaGirar 7s ease forwards}
+  .isla-girar svg{width:18px;height:18px;animation:islaGiro 2.4s ease-in-out infinite}
+}
+@keyframes islaGirar{0%{opacity:0}8%,80%{opacity:1}100%{opacity:0}}
+@keyframes islaGiro{0%,30%{rotate:0deg}55%,100%{rotate:-90deg}}
+@media print{.isla-pdf,.isla-seta,.isla-girar{display:none!important}}
 </style>
 <!-- /isla:controles -->
 '''
@@ -66,6 +84,7 @@ CONTROLES_BODY = '''<!-- isla:controles -->
 <button class="isla-seta isla-ant" type="button" aria-label="Slide anterior" onclick="islaIr(-1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
 <button class="isla-seta isla-prox" type="button" aria-label="Próximo slide" onclick="islaIr(1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
 <button class="isla-pdf" type="button" onclick="window.print()">Baixar PDF</button>
+<div class="isla-girar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/></svg>Gire o celular para ver em tela cheia</div>
 <script>
 function islaIr(d, b) {
   var s = document.querySelector('deck-stage');

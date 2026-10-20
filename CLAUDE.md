@@ -28,9 +28,9 @@ Apresentações em slides vindas do Claude Design são publicadas como estão (v
 4. Confira servindo `site/` localmente (`python3 -m http.server`) em 1600×900 e 380px antes do push.
 
 ## Painel (página inicial)
-`site/index.html` é o painel com todas as apresentações, protegido por senha pelo `middleware.js` (só `/` e `/_painel/*`; as propostas continuam abertas). Ele é **gerado**: não edite à mão.
+`site/index.html` é o painel com todas as apresentações, protegido pelo `middleware.js` com login próprio (`site/login.html`, POST em `/login`, cookie assinado de 30 dias, `/sair` desloga). Só `/` e `/_painel/*` exigem login; as propostas continuam abertas. Ele é **gerado**: não edite à mão.
 - Depois de criar ou mudar uma proposta, rode `node scripts/gerar-painel.mjs` (os scripts de importação já rodam) e inclua `site/index.html` e `site/_painel/` no commit.
-- Acessos: variável `PAINEL_ACESSOS` na Vercel (produção), formato `nome:senha,nome2:senha2`. Mudar exige um novo deploy (push ou `vercel --prod`). Nunca coloque senhas no repositório.
+- Acessos: variável `PAINEL_ACESSOS` na Vercel (produção), formato `email:senha,email2:senha2`, e `PAINEL_SEGREDO` (chave das sessões). Mudar exige um novo deploy (push ou `vercel --prod`). Nunca coloque senhas no repositório.
 
 ## Ao atualizar uma proposta
 Edite só a pasta daquele cliente. Nunca renomeie a pasta (o link do cliente quebraria).
