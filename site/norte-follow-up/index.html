@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Isla × Norte Ventures · Follow-up</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- isla:controles -->
+<script>
+// Para quem vê a proposta: esconde a barra de miniaturas do editor do Claude Design
+// e a barrinha de controles nativa do deck (as setas da Isla substituem).
+new MutationObserver(function () {
+  document.querySelectorAll('deck-stage:not([no-rail])').forEach(function (d) {
+    d.setAttribute('no-rail', '');
+    if (d.shadowRoot) {
+      var s = document.createElement('style');
+      s.textContent = '.overlay{display:none!important}';
+      d.shadowRoot.appendChild(s);
+    }
+  });
+}).observe(document.documentElement, { childList: true, subtree: true });
+</script>
+<style>
+.isla-pdf,.isla-seta{position:fixed;z-index:2147483001;appearance:none;cursor:pointer;color:#fff;
+  border:1px solid rgba(255,255,255,.14);background:rgba(20,20,20,.55);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  opacity:.75;transition:opacity .3s ease,background .3s ease}
+.isla-pdf{bottom:16px;right:16px;padding:10px 16px;border-radius:999px;
+  font:500 13px/1 Manrope,system-ui,sans-serif;letter-spacing:.01em}
+.isla-seta{top:50%;translate:0 -50%;width:52px;height:52px;border-radius:50%;padding:0;display:grid;place-items:center}
+.isla-seta svg{width:20px;height:20px}
+.isla-ant{left:16px}.isla-prox{right:16px}
+.isla-pdf:hover,.isla-pdf:focus-visible,.isla-seta:hover,.isla-seta:focus-visible{opacity:1;background:rgba(40,40,40,.75)}
+.isla-seta:disabled{opacity:.18;cursor:default;background:rgba(20,20,20,.55)}
+@media (max-width:640px){
+  .isla-seta{top:auto;bottom:16px;translate:none;width:44px;height:44px}
+  .isla-ant{left:16px}.isla-prox{left:68px;right:auto}
+}
+@media print{.isla-pdf,.isla-seta{display:none!important}}
+</style>
+<!-- /isla:controles -->
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A0A0A"/><text x="50" y="62" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#F5F5F2">isla</text></svg></template>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/norte-follow-up/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#000}a{color:#fff}a:hover{color:#ccc}
+@keyframes islaRise{from{opacity:0;transform:translateY(28px)}}
+@media (prefers-reduced-motion:no-preference){
+deck-stage>section{transition:opacity 600ms cubic-bezier(.2,.8,.2,1),visibility 0s linear 600ms}
+deck-stage>section[data-deck-active]{transition:opacity 600ms cubic-bezier(.2,.8,.2,1),visibility 0s}
+deck-stage>section[data-deck-active]>*{animation:islaRise 800ms cubic-bezier(.2,.8,.2,1) both}
+deck-stage>section[data-deck-active]>*:nth-child(2){animation-delay:90ms}
+deck-stage>section[data-deck-active]>*:nth-child(3){animation-delay:180ms}
+deck-stage>section[data-deck-active]>*:nth-child(n+4){animation-delay:270ms}
+}</style>
+<script src="/norte-follow-up/image-slot.js"></script>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="/norte-follow-up/deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="01 Capa" data-screen-label="01" style="background:rgb(0,0,0);overflow:hidden">
+  <div style="position:absolute;left:0;top:-369px;width:1920px;height:1511px;opacity:0.33;overflow:hidden;background:rgb(10,10,10)">
+    <div style="position:absolute;left:0;top:215px;width:1920px;height:1511px;background:url(/norte-follow-up/assets/hero-sea.png) center / cover no-repeat"></div>
+  </div>
+  <div style="position:absolute;left:0;top:58px;width:1920px;height:57px;display:flex;gap:20px;align-items:center;justify-content:center">
+    <img src="/norte-follow-up/assets/isla-logo-white.svg" alt="isla" style="width:123.35px;height:43.648px;display:block">
+    <div style="width:1px;height:57px;background:rgb(105,105,105)"></div>
+    <img src="/norte-follow-up/assets/norte/logo-norte-white.png" alt="Norte" style="height:52px;width:auto;display:block">
+  </div>
+  <div style="position:absolute;left:96px;top:330px;width:1728px;display:flex;flex-direction:column;gap:28px;align-items:center">
+    <div style="display:flex;gap:14px;align-items:center;height:33px">
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+      <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">Proposta para Pedro</span>
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+    </div>
+    <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:90px;line-height:1.2;letter-spacing:-0.02em;color:#fff;text-align:center">Seu perfil e a Norte<br><em style="font-style:italic">no mesmo ritmo.</em></h1>
+    <p style="margin:0;width:1026px;font-family:Manrope,sans-serif;font-size:28px;line-height:1.3;color:rgba(255,255,255,0.8);text-align:center;text-wrap:pretty">Conteúdo estratégico e design dedicado para o seu perfil pessoal e para a Company page da Norte.</p>
+  </div>
+</section>
+
+<section data-label="02 Company page" data-screen-label="02" style="background:rgb(10,10,10);overflow:hidden">
+  <div style="position:absolute;left:132px;top:110px;width:1656px;display:flex;justify-content:space-between;align-items:flex-end;gap:80px">
+    <div style="flex:0 1 960px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;gap:14px;align-items:center;height:33px">
+        <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+        <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">Company page</span>
+      </div>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:80px;line-height:1.1;letter-spacing:-0.02em;color:#fff;text-wrap:pretty">A Norte presente toda semana, <em style="font-style:italic">com conteúdo e arte de nível profissional.</em></h2>
+    </div>
+    <div style="flex:0 1 560px;display:flex;flex-direction:column;gap:22px;padding-bottom:8px">
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:24px;line-height:1.35;color:rgb(74,222,128)">✓</span>
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:24px;line-height:1.35;color:rgba(255,255,255,0.8);text-wrap:pretty">Um designer dedicado cria cada post seguindo a identidade visual da marca.</p>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:24px;line-height:1.35;color:rgb(74,222,128)">✓</span>
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:24px;line-height:1.35;color:rgba(255,255,255,0.8);text-wrap:pretty">A marca aparece com constância e fala a mesma língua em todas as publicações.</p>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:560px;top:430px;width:800px;height:700px;border-radius:50%;background:radial-gradient(closest-side, rgba(255,255,255,0.22), rgba(255,255,255,0.07) 55%, rgba(255,255,255,0) 100%);filter:blur(30px);pointer-events:none"></div>
+  <div style="position:absolute;left:0;top:520px;width:1920px;height:520px;perspective:2400px;perspective-origin:50% 45%">
+    <div style="position:absolute;inset:0">
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(32deg) translateZ(1800px);z-index:6;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(32deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#2E1800;">
+        <div style="position:absolute;left:80px;right:80px;top:80px;display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:118px;line-height:0.98;letter-spacing:-0.045em;color:#F8F4E4;">Você é<br><span style="font-family:'Outfit',sans-serif;font-weight:600;color:#FCD200;">founder?</span></div>
+          <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="height:96px;width:auto;margin-top:10px;">
+        </div>
+        <div style="position:absolute;left:80px;right:80px;top:410px;height:640px;border-radius:28px;background:#F8F4E4;box-sizing:border-box;padding:40px 44px;display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:0.12em;text-transform:uppercase;color:#9C7202;padding-bottom:16px;border-bottom:1px solid #E3D9BE;"><div>A jornada do zero</div><div>Norte junto</div></div>
+          <div data-anim="row" style="display:flex;justify-content:space-between;font-family:'Outfit',sans-serif;font-size:28px;color:#2E1800;padding:13px 0;border-bottom:1px solid #EBE3CC;"><div>Tirar o produto do papel</div><div>✓</div></div>
+          <div data-anim="row" style="display:flex;justify-content:space-between;font-family:'Outfit',sans-serif;font-size:28px;color:#2E1800;padding:13px 0;border-bottom:1px solid #EBE3CC;"><div>Contratar as primeiras pessoas</div><div>✓</div></div>
+          <div data-anim="row" style="display:flex;justify-content:space-between;font-family:'Outfit',sans-serif;font-size:28px;color:#2E1800;padding:13px 0;border-bottom:1px solid #EBE3CC;"><div>Enfrentar os incumbentes</div><div>✓</div></div>
+          <div data-anim="row" style="display:flex;justify-content:space-between;font-family:'Outfit',sans-serif;font-size:28px;color:#2E1800;padding:13px 0;border-bottom:1px solid #EBE3CC;"><div>Gerar crença no mercado</div><div>✓</div></div>
+          <div data-anim="row" style="display:flex;justify-content:space-between;font-family:'Outfit',sans-serif;font-size:28px;color:#2E1800;padding:13px 0;border-bottom:1px solid #EBE3CC;"><div>Próxima rodada</div><div>✓</div></div>
+          <div data-anim="glow" style="margin-top:auto;background:#2E1800;border-radius:14px;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;"><div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:32px;color:#F8F4E4;">Investimento early-stage</div><div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:24px;color:#FCD200;">NORTE ↗</div></div>
+        </div>
+        <div style="position:absolute;left:80px;right:80px;bottom:80px;display:grid;grid-template-columns:1fr 1fr;gap:56px;">
+          <div style="font-family:'Outfit',sans-serif;font-size:28px;line-height:1.4;color:#D9C9A0;">Construir é brutal, e ninguém deveria fazer isso sozinho.</div>
+          <div style="font-family:'Outfit',sans-serif;font-weight:500;font-size:28px;line-height:1.4;color:#F8F4E4;">A Norte entra cedo e fica <span style="color:#FCD200;">do seu lado.</span></div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-32deg) translateZ(1800px);z-index:6;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-32deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#472500;">
+        <img src="/norte-follow-up/assets/norte/construcao.png" alt="" style="position:absolute;left:150px;top:150px;width:780px;height:auto;">
+        <div style="position:absolute;left:0;bottom:0;width:1080px;height:640px;background:linear-gradient(180deg,rgba(46,24,0,0) 0%,rgba(46,24,0,0.92) 50%,#2E1800 100%);"></div>
+        <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="position:absolute;left:80px;top:64px;height:96px;width:auto;">
+        <div style="position:absolute;left:80px;right:80px;bottom:80px;display:flex;flex-direction:column;gap:32px;">
+          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:132px;line-height:0.95;letter-spacing:-0.045em;color:#F8F4E4;">Inquietos.<br><span style="font-family:'Outfit',sans-serif;font-weight:600;color:#FCD200;">Inconformados.</span></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:22px;letter-spacing:0.1em;text-transform:uppercase;color:#F8F4E4;">Produtos · Times · Crença · <span data-anim="blink" style="color:#FCD200;">Construindo</span></div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(24deg) translateZ(1800px);z-index:7;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(24deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background-color:#472500;background-image:radial-gradient(circle,rgba(248,244,228,0.12) 1.5px,transparent 1.8px);background-size:36px 36px;background-position:18px 18px;">
+        <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="position:absolute;left:80px;top:64px;height:96px;width:auto;">
+        <div data-anim="sway" style="position:absolute;left:250px;top:240px;width:580px;height:768px;transform:rotate(-5deg);background-color:#F8F4E4;background-image:linear-gradient(90deg,transparent 56px,#FCD200 56px,#FCD200 60px,transparent 60px),repeating-linear-gradient(180deg,transparent 0 63px,rgba(71,37,0,0.1) 63px 64px);box-shadow:0 40px 80px rgba(0,0,0,0.35);padding:64px 48px 0 84px;box-sizing:border-box;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:22px;line-height:64px;height:64px;letter-spacing:0.12em;text-transform:uppercase;color:#9C7202;">Manifesto · Norte</div>
+          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:62px;line-height:64px;margin-top:64px;letter-spacing:-0.04em;color:#2E1800;">Criar uma<br>empresa do zero<br>é uma <span style="font-family:'Outfit',sans-serif;font-weight:600;color:#9C7202;">aventura.</span></div>
+          <img src="/norte-follow-up/assets/norte/seta.png" alt="" style="position:absolute;right:40px;bottom:50px;width:150px;height:auto;">
+        </div>
+        <div style="position:absolute;left:80px;right:80px;bottom:80px;display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-family:'Outfit',sans-serif;font-size:32px;line-height:1.35;color:#F8F4E4;">Não é só “negócio”.<br>É a aventura do nosso tempo.</div>
+          <div data-anim="nudge" style="width:80px;height:80px;background:#FCD200;color:#2E1800;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:34px;">→</div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-24deg) translateZ(1800px);z-index:7;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-24deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background-color:#472500;background-image:repeating-linear-gradient(70deg,transparent 0 64px,rgba(248,244,228,0.04) 64px 65px);">
+        <div style="position:absolute;left:80px;right:80px;top:260px;display:flex;flex-direction:column;align-items:center;gap:32px;">
+          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:120px;line-height:0.98;letter-spacing:-0.045em;color:#F8F4E4;text-align:center;">Operadores<br><span style="font-family:'Outfit',sans-serif;font-weight:600;color:#FCD200;">investindo em operadores.</span></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:22px;letter-spacing:0.12em;text-transform:uppercase;color:#D9C9A0;text-align:center;">Quem já construiu, do lado de quem constrói</div>
+        </div>
+        <div style="position:absolute;left:80px;right:80px;bottom:80px;background:#2E1800;border-radius:28px;box-sizing:border-box;padding:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-content:start;">
+          <img data-anim="float" src="/norte-follow-up/assets/norte/time1.png" alt="" style="width:100%;height:auto;border-radius:18px;">
+          <img data-anim="float" src="/norte-follow-up/assets/norte/time2.png" alt="" style="width:100%;height:auto;border-radius:18px;">
+          <img data-anim="float" src="/norte-follow-up/assets/norte/time3.png" alt="" style="width:100%;height:auto;border-radius:18px;">
+          <div style="grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;margin-top:28px;">
+            <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="height:96px;width:auto;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:22px;letter-spacing:0.1em;color:#FCD200;">NORTE.VENTURES/TEAM</div>
+          </div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(16deg) translateZ(1800px) scale(1.07);z-index:8;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(16deg) translateZ(1800px) scale(1.07) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#2E1800;">
+        <img data-anim="kb" src="/norte-follow-up/assets/norte/astronauta.png" alt="" style="position:absolute;left:0;top:0;width:1080px;height:1200px;object-fit:cover;object-position:60% 50%;">
+        <div style="position:absolute;left:0;top:0;width:1080px;height:1200px;background:rgba(46,24,0,0.35);"></div>
+        <div style="position:absolute;left:0;top:0;width:1080px;height:1200px;background-image:linear-gradient(90deg,rgba(248,244,228,0.16) 1px,transparent 1px),linear-gradient(180deg,rgba(248,244,228,0.16) 1px,transparent 1px);background-size:108px 108px;background-position:0 22px;"></div>
+        <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="position:absolute;left:36px;top:24px;height:72px;width:auto;">
+        <div style="position:absolute;left:0;top:130px;display:grid;grid-template-columns:repeat(10,108px);font-family:'Outfit',sans-serif;font-weight:600;font-size:60px;color:#2E1800;">
+          <div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">A</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">R</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">Q</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">U</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">I</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">T</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">E</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">T</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">O</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">S</div>
+          <div></div><div></div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">D</div><div data-anim="tile" style="margin:5px;height:98px;background:#F8F4E4;display:flex;align-items:center;justify-content:center;">O</div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+        <div style="position:absolute;left:0;top:994px;display:grid;grid-template-columns:repeat(10,108px);font-family:'Outfit',sans-serif;font-weight:600;font-size:60px;color:#2E1800;">
+          <div></div><div></div><div></div><div></div><div data-anim="tileRed" style="margin:5px;height:98px;background:#FCD200;display:flex;align-items:center;justify-content:center;">A</div><div data-anim="tileRed" style="margin:5px;height:98px;background:#FCD200;display:flex;align-items:center;justify-content:center;">M</div><div data-anim="tileRed" style="margin:5px;height:98px;background:#FCD200;display:flex;align-items:center;justify-content:center;">A</div><div data-anim="tileRed" style="margin:5px;height:98px;background:#FCD200;display:flex;align-items:center;justify-content:center;">N</div><div data-anim="tileRed" style="margin:5px;height:98px;background:#FCD200;display:flex;align-items:center;justify-content:center;">H</div><div data-anim="tileRed" style="margin:5px;height:98px;background:#FCD200;display:flex;align-items:center;justify-content:center;">Ã</div>
+        </div>
+        <div style="position:absolute;left:0;top:1200px;width:1080px;height:150px;background:#2E1800;box-sizing:border-box;padding:0 48px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-family:'Outfit',sans-serif;font-weight:500;font-size:26px;line-height:1.3;color:#F8F4E4;">Empreendedores são os<br>arquitetos do amanhã</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:20px;letter-spacing:0.08em;line-height:1.4;text-transform:uppercase;color:#D9C9A0;text-align:center;">Manifesto<br>Norte</div>
+          <div style="background:#FCD200;padding:18px 28px;font-family:'Outfit',sans-serif;font-weight:600;font-size:22px;color:#2E1800;">norte.ventures ↗</div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-16deg) translateZ(1800px) scale(1.07);z-index:8;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-16deg) translateZ(1800px) scale(1.07) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background:#2E1800;">
+        <div style="position:absolute;inset:0;background-color:#472500;background-image:radial-gradient(circle,rgba(248,244,228,0.12) 1.5px,transparent 1.8px);background-size:36px 36px;"></div>
+        <div data-anim="floatSlow" style="position:absolute;left:110px;top:120px;width:860px;height:1110px;overflow:hidden;background:#F8F4E4;box-shadow:0 40px 80px rgba(0,0,0,0.5);">
+          <div style="position:absolute;left:0;top:0;width:860px;height:560px;overflow:hidden;background:#472500;">
+            <img src="/norte-follow-up/assets/norte/founders2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;">
+            <img src="/norte-follow-up/assets/norte/seta.png" alt="" style="position:absolute;left:32px;top:28px;height:120px;width:auto;">
+          </div>
+          <div style="position:absolute;left:64px;right:64px;top:620px;display:flex;flex-direction:column;gap:28px;">
+            <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:120px;line-height:1;letter-spacing:0.18em;color:#2E1800;">NORTE</div>
+            <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:24px;letter-spacing:0.06em;color:#2E1800;">
+              <div style="color:#9C7202;">highlights</div><div>Tractian</div><div>Cayena</div><div>Nomad</div><div>Jota</div><div>Brendi</div>
+            </div>
+          </div>
+          <div style="position:absolute;left:64px;right:64px;bottom:64px;font-family:'Outfit',sans-serif;font-size:30px;line-height:1.4;color:#2E1800;">Empreendedores são os arquitetos do amanhã.<br><span style="font-family:'Outfit',sans-serif;font-weight:600;color:#9C7202;">A gente investe neles.</span></div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(8deg) translateZ(1800px) scale(1.14);z-index:9;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(8deg) translateZ(1800px) scale(1.14) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width: 1080px; height: 1350px; position: relative; overflow: hidden; background-color: #925F28">
+        <div style="position:absolute;left:-40px;top:300px;width:1160px;height:3px;background:#2E1800;transform:rotate(-2deg);"></div>
+        <div data-anim="swing" style="transform-origin:50% 0;position:absolute;left:220px;top:300px;width:640px;height:700px;transform:rotate(2.5deg);background:#F8F4E4;background-image:repeating-linear-gradient(180deg,transparent 0 73px,rgba(71,37,0,0.1) 73px 74px);box-shadow:0 30px 60px rgba(0,0,0,0.35);box-sizing:border-box;padding:110px 70px 70px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:58px;line-height:1.2;text-transform:uppercase;color:#2E1800;">Sucesso da noite para o dia <span style="background:#F8FF51;">não existe.</span><img src="/norte-follow-up/assets/norte/logo-norte-dark.png" alt="Norte" style="position:absolute;left:70px;bottom:50px;height:80px;width:auto;"></div>
+        <div data-anim="swing" style="transform-origin:50% 0;position:absolute;left:510px;top:262px;width:44px;height:120px;background:#472500;border-radius:4px;transform:rotate(3deg);box-shadow:0 6px 12px rgba(0,0,0,0.3);"></div>
+        <div style="position:absolute;left:80px;right:80px;bottom:80px;height:150px;border-left:3px solid #2E1800;border-right:3px solid #2E1800;display:flex;align-items:center;justify-content:center;">
+          <div style="font-family:'Outfit',sans-serif;font-weight:500;font-size:28px;line-height:1.4;color:#2E1800;text-align:center;">Por trás de cada empresa que deu certo,<br>anos de foco, operação e teimosia.</div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-8deg) translateZ(1800px) scale(1.14);z-index:9;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-8deg) translateZ(1800px) scale(1.14) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="width: 1080px; height: 1350px; position: relative; overflow: hidden; background-color: #925F28; background-image: repeating-linear-gradient(70deg,transparent 0 64px,rgba(248,244,228,0.04) 64px 65px)">
+        <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="position:absolute;left:80px;top:64px;height:96px;width:auto;">
+        <div data-anim="floatSlow" style="position:absolute;left:180px;top:220px;width:1000px;height:620px;background:#2E1800;border:1px solid #6B4510;border-radius:28px;box-shadow:0 40px 80px rgba(0,0,0,0.35);overflow:hidden;">
+          <div style="height:96px;border-bottom:1px solid #5A3A0C;display:flex;align-items:center;gap:40px;padding:0 40px;">
+            <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:32px;color:#F8F4E4;">Portfolio</div>
+            <div style="display:flex;align-items:center;gap:24px;font-family:'Outfit',sans-serif;font-weight:500;font-size:22px;color:#B59A62;"><div style="background:#FCD200;border-radius:999px;padding:8px 18px;color:#2E1800;">Highlights</div><div>Fund I</div><div>Fund II</div><div>Exits</div></div>
+          </div>
+          <div style="padding:44px 40px;display:grid;grid-template-columns:repeat(3,250px);gap:52px 30px;align-items:center;justify-items:start;">
+            <img data-anim="step" src="/norte-follow-up/assets/norte/logoa-tractian.png" alt="Tractian" style="width:250px;height:auto;">
+            <img data-anim="step" src="/norte-follow-up/assets/norte/logoa-cayena.png" alt="Cayena" style="width:230px;height:auto;">
+            <img data-anim="step" src="/norte-follow-up/assets/norte/logoa-nomad.png" alt="Nomad" style="width:230px;height:auto;">
+            <img data-anim="step" src="/norte-follow-up/assets/norte/logoa-vetto.png" alt="Vetto" style="width:180px;height:auto;">
+            <img data-anim="step" src="/norte-follow-up/assets/norte/logoa-jota.png" alt="Jota" style="width:170px;height:auto;">
+            <img src="/norte-follow-up/assets/norte/logoa-innerai.png" alt="Inner AI" style="width:210px;height:auto;">
+            <img src="/norte-follow-up/assets/norte/logoa-brendi.png" alt="Brendi" style="width:200px;height:auto;">
+            <img src="/norte-follow-up/assets/norte/logoa-crown.png" alt="Crown" style="width:210px;height:auto;">
+            <div style="display:flex;flex-direction:column;gap:2px;"><div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:64px;line-height:1;letter-spacing:-0.03em;color:#FCD200;">+110</div><div style="font-family:'Outfit',sans-serif;font-weight:500;font-size:22px;color:#D9C9A0;">empresas no portfólio</div></div>
+          </div>
+        </div>
+        <div style="position:absolute;left:80px;right:80px;bottom:80px;display:flex;flex-direction:column;gap:28px;">
+          <div style="display:flex;align-items:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:20px;letter-spacing:0.14em;text-transform:uppercase;color:#D9C9A0;"><span style="font-family: Outfit, sans-serif; font-weight: 500; font-size: 30px; color: rgb(252, 210, 0); transform: skewX(-18deg);">/</span><b>02 · Portfólio</b></div>
+          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:104px;line-height:1;letter-spacing:-0.045em;color:#F8F4E4;">Apostamos cedo<br><span style="font-family: 'Outfit',sans-serif; font-weight: 600; color: #FCD200; text-decoration-line: none; text-decoration-color: #FCD200; text-decoration-thickness: 6px; text-underline-offset: 10px">em quem constrói.</span></div>
+        </div>
+      </div></div></div>
+      <div style="position:absolute;left:780px;top:30px;width:360px;height:450px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 0 70px rgba(255,255,255,0.22), 0 40px 80px rgba(0,0,0,0.6);transform:perspective(2400px) translateY(-36px) translateZ(90px);z-index:20;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateY(-36px) translateZ(90px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(0.0px) scale(0.33333);transform-origin:0 0;pointer-events:none"><div style="width:1080px;height:1350px;position:relative;overflow:hidden;background-color:#472500;background-image:repeating-linear-gradient(70deg,transparent 0 64px,rgba(248,244,228,0.04) 64px 65px);">
+        <div style="position:absolute;left:80px;top:80px;font-family:'Outfit',sans-serif;font-weight:600;font-size:112px;line-height:0.98;letter-spacing:-0.045em;color:#F8F4E4;">Construir uma<br>empresa é <span style="font-family:'Outfit',sans-serif;font-weight:600;color:#FCD200;">brutal.</span></div>
+        <svg width="1080" height="1350" viewBox="0 0 1080 1350" style="position:absolute;inset:0;"><g data-anim="dash" stroke="#9C7202" stroke-width="2" stroke-dasharray="6 8" fill="none"><path d="M250 530 L330 640"></path><path d="M560 470 L540 600"></path><path d="M880 540 L760 640"></path><path d="M240 930 L330 860"></path><path d="M860 920 L760 860"></path><path d="M560 1000 L540 920"></path></g></svg>
+        <div style="position:absolute;left:300px;top:580px;width:480px;height:320px;background:#9C7202;border-radius:22px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.3);">
+          <img src="/norte-follow-up/assets/norte/luneta.png" alt="" style="position:absolute;left:40px;top:20px;width:400px;height:280px;object-fit:contain;">
+        </div>
+        <div data-anim="float" style="position:absolute;left:80px;top:440px;transform:rotate(-4deg);background:#F8F4E4;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.25);padding:20px 26px;display:flex;align-items:center;gap:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:30px;color:#2E1800;"><div style="width:10px;height:10px;border-radius:50%;background:#FCD200;border:2px solid #2E1800;"></div>Criar produto</div>
+        <div data-anim="float" style="position:absolute;left:430px;top:380px;transform:rotate(4deg);background:#F8F4E4;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.25);padding:20px 26px;display:flex;align-items:center;gap:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:30px;color:#2E1800;"><div style="width:10px;height:10px;border-radius:50%;background:#FCD200;border:2px solid #2E1800;"></div>Contratar</div>
+        <div data-anim="float" style="position:absolute;left:760px;top:450px;transform:rotate(3deg);background:#F8F4E4;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.25);padding:20px 26px;display:flex;align-items:center;gap:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:30px;color:#2E1800;"><div style="width:10px;height:10px;border-radius:50%;background:#FCD200;border:2px solid #2E1800;"></div>Incumbentes</div>
+        <div data-anim="float" style="position:absolute;left:80px;top:900px;transform:rotate(2deg);background:#F8F4E4;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.25);padding:20px 26px;display:flex;align-items:center;gap:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:30px;color:#2E1800;"><div style="width:10px;height:10px;border-radius:50%;background:#FCD200;border:2px solid #2E1800;"></div>Captar</div>
+        <div data-anim="float" style="position:absolute;left:790px;top:890px;transform:rotate(-4deg);background:#F8F4E4;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.25);padding:20px 26px;display:flex;align-items:center;gap:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:30px;color:#2E1800;"><div style="width:10px;height:10px;border-radius:50%;background:#FCD200;border:2px solid #2E1800;"></div>Gerar crença</div>
+        <div data-anim="float" style="position:absolute;left:430px;top:980px;transform:rotate(-5deg);background:#FCD200;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.25);padding:20px 26px;display:flex;align-items:center;gap:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:30px;color:#2E1800;"><div style="width:10px;height:10px;border-radius:50%;background:#2E1800;"></div>Sobreviver</div>
+        <div style="position:absolute;left:80px;right:80px;bottom:72px;display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:end;">
+          <div style="font-family:'Outfit',sans-serif;font-size:26px;line-height:1.4;color:#D9C9A0;">A maioria das empresas não nasceu para sobreviver.</div>
+          <img src="/norte-follow-up/assets/norte/logo-norte.png" alt="Norte" style="height:84px;width:auto;">
+          <div style="font-family:'Outfit',sans-serif;font-weight:500;font-size:26px;line-height:1.4;color:#F8F4E4;text-align:right;">Alguns inconformados constroem mesmo assim.</div>
+        </div>
+      </div></div></div>
+    </div>
+  </div>
+  <span style="position:absolute;left:1742px;top:52px;font-family:Manrope,sans-serif;font-weight:500;font-size:22px;line-height:100%;letter-spacing:0.06em;color:#fff;white-space:nowrap">02 / 03</span>
+</section>
+
+<section data-label="03 Proposta" data-screen-label="03" style="background:rgb(10,10,10);overflow:hidden">
+  <div style="position:absolute;left:0;top:130px;width:1920px;display:flex;flex-direction:column;gap:20px;align-items:center">
+    <div style="display:flex;gap:14px;align-items:center;height:33px">
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+      <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">A proposta</span>
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+    </div>
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:90px;line-height:1.2;letter-spacing:-0.02em;color:#fff;text-align:center">Seu perfil e a Company page por <em style="font-style:italic">US$ 750.</em></h2>
+  </div>
+  <div style="position:absolute;left:410px;top:420px;width:1100px;background:rgb(22,22,22);box-shadow:inset 0 0 0 1px rgb(44,44,44), 0 16px 48px rgba(0,0,0,0.2);padding:40px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+    <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.12);padding:22px 28px;display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;flex-shrink:0;width:106px"><img src="/norte-follow-up/assets/pedro-teo.png" alt="Pedro Teo" style="width:60px;height:60px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0"></div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:Manrope,sans-serif;font-weight:600;font-size:22px;line-height:1.2;color:#fff;white-space:nowrap">Perfil pessoal</span>
+        <span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6);white-space:nowrap">Pedro Teo · US$ 500</span>
+      </div>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:190px;flex-shrink:0;white-space:nowrap"><span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:#fff">US$ 500</span><span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6)">/ mês</span></span>
+    </div>
+    <div style="border-radius:16px;border:1px solid rgba(74,222,128,0.4);background:rgba(74,222,128,0.06);padding:22px 28px;display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;flex-shrink:0;width:106px"><img src="/norte-follow-up/assets/pedro-teo.png" alt="Pedro Teo" style="width:60px;height:60px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0;box-shadow:0 0 0 3px rgb(23,32,26);position:relative;z-index:1"><div style="width:60px;height:60px;border-radius:50%;background:#000;box-shadow:0 0 0 3px rgb(23,32,26);margin-left:-14px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><img src="/norte-follow-up/assets/norte/logo-norte-white.png" alt="Norte" style="height:26px;width:auto;max-width:40px;object-fit:contain;display:block"></div></div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:Manrope,sans-serif;font-weight:600;font-size:22px;line-height:1.2;color:#fff;white-space:nowrap">Perfil pessoal + Company page</span>
+        <span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6);white-space:nowrap">Pedro e página da Norte · US$ 500 + US$ 250</span>
+      </div>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:190px;flex-shrink:0;white-space:nowrap"><span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:rgb(74,222,128)">US$ 750</span><span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6)">/ mês no total</span></span>
+    </div>
+  </div>
+  <a href="https://cal.com/marcoshollmann/30min" target="_blank" rel="noopener" style="position:absolute;left:760px;top:900px;width:400px;height:84px;border-radius:14px;background:#fff;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:700;font-size:26px;line-height:100%;color:#000;text-decoration:none;white-space:nowrap" style-hover="background:rgb(225,225,225)">Agendar conversa (30min)</a>
+  <span style="position:absolute;left:1742px;top:96px;font-family:Manrope,sans-serif;font-weight:500;font-size:22px;line-height:100%;letter-spacing:0.06em;color:#fff;white-space:nowrap">03 / 03</span>
+</section>
+
+</x-import>
+</x-dc>
+<!-- isla:controles -->
+<button class="isla-seta isla-ant" type="button" aria-label="Slide anterior" onclick="islaIr(-1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button class="isla-seta isla-prox" type="button" aria-label="Próximo slide" onclick="islaIr(1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+<button class="isla-pdf" type="button" onclick="window.print()">Baixar PDF</button>
+<script>
+function islaIr(d, b) {
+  var s = document.querySelector('deck-stage');
+  if (s && s.next) d < 0 ? s.prev() : s.next();
+  if (b) b.blur(); // sem isso, Espaço com o botão em foco avançaria dois slides
+}
+document.addEventListener('slidechange', function (e) {
+  document.querySelector('.isla-ant').disabled = e.detail.index <= 0;
+  document.querySelector('.isla-prox').disabled = e.detail.index >= e.detail.total - 1;
+});
+</script>
+<!-- /isla:controles -->
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

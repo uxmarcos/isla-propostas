@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Isla × Plinq · Follow-up</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- isla:controles -->
+<script>
+// Para quem vê a proposta: esconde a barra de miniaturas do editor do Claude Design
+// e a barrinha de controles nativa do deck (as setas da Isla substituem).
+new MutationObserver(function () {
+  document.querySelectorAll('deck-stage:not([no-rail])').forEach(function (d) {
+    d.setAttribute('no-rail', '');
+    if (d.shadowRoot) {
+      var s = document.createElement('style');
+      s.textContent = '.overlay{display:none!important}';
+      d.shadowRoot.appendChild(s);
+    }
+  });
+}).observe(document.documentElement, { childList: true, subtree: true });
+</script>
+<style>
+.isla-pdf,.isla-seta{position:fixed;z-index:2147483001;appearance:none;cursor:pointer;color:#fff;
+  border:1px solid rgba(255,255,255,.14);background:rgba(20,20,20,.55);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  opacity:.75;transition:opacity .3s ease,background .3s ease}
+.isla-pdf{bottom:16px;right:16px;padding:10px 16px;border-radius:999px;
+  font:500 13px/1 Manrope,system-ui,sans-serif;letter-spacing:.01em}
+.isla-seta{top:50%;translate:0 -50%;width:52px;height:52px;border-radius:50%;padding:0;display:grid;place-items:center}
+.isla-seta svg{width:20px;height:20px}
+.isla-ant{left:16px}.isla-prox{right:16px}
+.isla-pdf:hover,.isla-pdf:focus-visible,.isla-seta:hover,.isla-seta:focus-visible{opacity:1;background:rgba(40,40,40,.75)}
+.isla-seta:disabled{opacity:.18;cursor:default;background:rgba(20,20,20,.55)}
+@media (max-width:640px){
+  .isla-seta{top:auto;bottom:16px;translate:none;width:44px;height:44px}
+  .isla-ant{left:16px}.isla-prox{left:68px;right:auto}
+}
+@media print{.isla-pdf,.isla-seta{display:none!important}}
+</style>
+<!-- /isla:controles -->
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A0A0A"/><text x="50" y="62" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#F5F5F2">isla</text></svg></template>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/plinq-follow-up/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#000}a{color:#fff}a:hover{color:#ccc}
+@keyframes islaRise{from{opacity:0;transform:translateY(28px)}}
+@media (prefers-reduced-motion:no-preference){
+deck-stage>section{transition:opacity 600ms cubic-bezier(.2,.8,.2,1),visibility 0s linear 600ms}
+deck-stage>section[data-deck-active]{transition:opacity 600ms cubic-bezier(.2,.8,.2,1),visibility 0s}
+deck-stage>section[data-deck-active]>*{animation:islaRise 800ms cubic-bezier(.2,.8,.2,1) both}
+deck-stage>section[data-deck-active]>*:nth-child(2){animation-delay:90ms}
+deck-stage>section[data-deck-active]>*:nth-child(3){animation-delay:180ms}
+deck-stage>section[data-deck-active]>*:nth-child(n+4){animation-delay:270ms}
+}</style>
+<script src="/plinq-follow-up/image-slot.js"></script>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="/plinq-follow-up/deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="01 Capa" data-screen-label="01" style="background:rgb(0,0,0);overflow:hidden">
+  <div style="position:absolute;left:0;top:-369px;width:1920px;height:1511px;opacity:0.33;overflow:hidden;background:rgb(10,10,10)">
+    <div style="position:absolute;left:0;top:215px;width:1920px;height:1511px;background:url(/plinq-follow-up/assets/hero-sea.png) center / cover no-repeat"></div>
+  </div>
+  <div style="position:absolute;left:0;top:58px;width:1920px;height:57px;display:flex;gap:20px;align-items:center;justify-content:center">
+    <img src="/plinq-follow-up/assets/isla-logo-white.svg" alt="isla" style="width:123.35px;height:43.648px;display:block">
+    <div style="width:1px;height:57px;background:rgb(105,105,105)"></div>
+    <img src="/plinq-follow-up/assets/plinq-logo-white.png" alt="plinq" style="width:100.54px;height:55.057px;object-fit:contain;display:block">
+  </div>
+  <div style="position:absolute;left:96px;top:330px;width:1728px;display:flex;flex-direction:column;gap:28px;align-items:center">
+    <div style="display:flex;gap:14px;align-items:center;height:33px">
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+      <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">Proposta para Sabrine</span>
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+    </div>
+    <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:90px;line-height:1.2;letter-spacing:-0.02em;color:#fff;text-align:center">Seu perfil e a Plinq<br><em style="font-style:italic">no mesmo ritmo.</em></h1>
+    <p style="margin:0;width:1026px;font-family:Manrope,sans-serif;font-size:28px;line-height:1.3;color:rgba(255,255,255,0.8);text-align:center;text-wrap:pretty">Conteúdo estratégico e design dedicado para o seu perfil pessoal e para a Company page da Plinq.</p>
+  </div>
+</section>
+
+<section data-label="02 Company page" data-screen-label="02" style="background:rgb(10,10,10);overflow:hidden">
+  <div style="position:absolute;left:132px;top:110px;width:1656px;display:flex;justify-content:space-between;align-items:flex-end;gap:80px">
+    <div style="flex:0 1 960px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;gap:14px;align-items:center;height:33px">
+        <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+        <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">Company page</span>
+      </div>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:80px;line-height:1.1;letter-spacing:-0.02em;color:#fff;text-wrap:pretty">A Plinq presente toda semana, <em style="font-style:italic">com conteúdo e arte de nível profissional.</em></h2>
+    </div>
+    <div style="flex:0 1 560px;display:flex;flex-direction:column;gap:22px;padding-bottom:8px">
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:24px;line-height:1.35;color:rgb(74,222,128)">✓</span>
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:24px;line-height:1.35;color:rgba(255,255,255,0.8);text-wrap:pretty">Um designer dedicado cria cada post seguindo a identidade visual da marca.</p>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:24px;line-height:1.35;color:rgb(74,222,128)">✓</span>
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:24px;line-height:1.35;color:rgba(255,255,255,0.8);text-wrap:pretty">A marca aparece com constância e fala a mesma língua em todas as publicações.</p>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:560px;top:430px;width:800px;height:700px;border-radius:50%;background:radial-gradient(closest-side, rgba(255,255,255,0.22), rgba(255,255,255,0.07) 55%, rgba(255,255,255,0) 100%);filter:blur(30px);pointer-events:none"></div>
+  <div style="position:absolute;left:0;top:520px;width:1920px;height:520px;perspective:2400px;perspective-origin:50% 45%">
+    <div style="position:absolute;inset:0">
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(32deg) translateZ(1800px);z-index:6;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(32deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#EFEADF;color:#141012;">
+<div style="position:absolute;left:0;right:0;top:330px;bottom:0;overflow:hidden;background:#141012;">
+<img src="/plinq-follow-up/assets/plinq/date-cafe.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 30%;filter:saturate(1.1) contrast(1.05);">
+
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.18) 1.4px,transparent 2px);background-size:8px 8px;"></div>
+<div style="position:absolute;left:470px;top:0;right:0;bottom:0;background:linear-gradient(90deg,rgba(20,16,18,0.5),rgba(20,16,18,0.85));"></div>
+</div>
+<div style="position:absolute;left:0;right:0;top:80px;text-align:center;font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1;">plinq</div>
+<div style="position:absolute;left:80px;right:80px;top:150px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 20px;font-family:'Instrument Serif',serif;font-size:62px;line-height:1;">
+<span style="background:#FF2E72;color:#fff;padding:4px 16px;">se</span><span style="background:#FF2E72;color:#fff;padding:4px 16px;">ele</span><span style="background:#FF2E72;color:#fff;padding:4px 16px;font-style:italic;">some</span><span style="background:#FF2E72;color:#fff;padding:4px 16px;">quando</span><span style="background:#FF2E72;color:#fff;padding:4px 16px;">você</span><span style="background:#FF2E72;color:#fff;padding:4px 16px;">pergunta</span><span style="background:#FF2E72;color:#fff;padding:4px 16px;">o nome completo,</span>
+</div>
+<div style="position:absolute;left:500px;right:60px;top:440px;font-size:150px;line-height:0.86;font-weight:900;letter-spacing:-0.035em;text-transform:uppercase;color:#FF2E72;">O pro<br>blema<br><span style="font-weight:400;color:#EFEADF;letter-spacing:-0.03em;">não é</span><br><span style="color:#EFEADF;">você.</span></div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-32deg) translateZ(1800px);z-index:6;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-32deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#141012;color:#141012;">
+<img src="/plinq-follow-up/assets/plinq/phone-street.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:saturate(1.1) contrast(1.05);">
+
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.18) 1.3px,transparent 1.9px);background-size:8px 8px;"></div>
+<div style="position:absolute;left:0;right:0;top:0;height:620px;background:linear-gradient(180deg,rgba(20,16,18,0.7) 0%,rgba(20,16,18,0) 100%);"></div>
+<div style="position:absolute;right:80px;top:90px;font-family:'Instrument Serif',serif;font-size:72px;line-height:1;color:#EFEADF;text-align:right;">um jeito novo<br>de <span style="font-style:italic;">conhecer pessoas</span><br>começa aqui</div>
+<div style="position:absolute;left:160px;right:160px;bottom:200px;padding:48px 52px;background:#EFEADF;display:flex;flex-direction:column;gap:30px;">
+<div style="font-size:64px;line-height:1.02;font-weight:600;letter-spacing:-0.03em;text-transform:uppercase;text-align:justify;text-align-last:justify;">Verificação para mulheres que querem conhecer pessoas <span style="font-weight:900;">sem medo.</span></div>
+<div style="display:flex;justify-content:space-between;font-size:22px;font-weight:800;"><div>PLINQ.COM.BR</div><div style="font-size:44px;letter-spacing:-0.03em;line-height:0.8;">plinq</div></div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(24deg) translateZ(1800px);z-index:7;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(24deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#141012;color:#EFEADF;">
+<img src="/plinq-follow-up/assets/plinq/hero-duo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 20%;filter:saturate(1.1) contrast(1.05);">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.18) 1.4px,transparent 2px);background-size:8px 8px;"></div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:640px;background:linear-gradient(180deg,rgba(20,16,18,0) 0%,rgba(20,16,18,0.9) 55%);"></div>
+<div style="position:absolute;left:80px;right:80px;bottom:110px;display:flex;flex-direction:column;align-items:center;gap:36px;text-align:center;">
+<div style="font-family:'Instrument Serif',serif;font-size:58px;line-height:1.05;">se o match parece <span style="font-style:italic;color:#FF2E72;">bom demais,</span><br>a gente te ajuda a confirmar.</div>
+<div style="font-size:150px;line-height:0.86;font-weight:900;letter-spacing:-0.035em;color:#FF2E72;text-transform:uppercase;">Verifique<br>*antes*</div>
+<div style="font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1;">plinq</div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-24deg) translateZ(1800px);z-index:7;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-24deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#FF2E72;color:#141012;">
+<img src="/plinq-follow-up/assets/plinq/phone-bokeh.jpg" alt="" style="position: absolute; left: -44px; top: -1px; width: 709px; height: 507px; object-fit: cover; filter:saturate(1.1) contrast(1.05);  transform: rotate(-8deg)">
+<img src="/plinq-follow-up/assets/plinq/card-celular.png" alt="" style="position: absolute; right: -80px; bottom: -30px; width: 700px; height: 494px; object-fit: cover; filter:saturate(1.1) contrast(1.05);  transform: rotate(6deg)">
+<div style="position: absolute; left: 96px; top: 447px; background: #EFEADF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; width: 893px; height: 492px">
+<div style="font-family:'Instrument Serif',serif;font-size:60px;line-height:1;">e conhecer alguém<br>novo se sentindo</div>
+<div style="font-size: 151px; line-height: 0.82; font-weight: 900; letter-spacing:-0.035em; text-transform: uppercase; width: 827px; height: 130px">protegida</div>
+<div style="font-family:'Instrument Serif',serif;font-size:52px;">com informação.</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:250px;display:flex;justify-content:center;"><div style="font-family:'Caveat',cursive;font-size:64px;color:#141012;padding:0 26px;border:3px solid #141012;border-radius:50%;background:#EFEADF;transform:rotate(-3deg);">(de verdade)</div></div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(16deg) translateZ(1800px) scale(1.07);z-index:8;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(16deg) translateZ(1800px) scale(1.07) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#EFEADF;color:#141012;">
+<div style="position: absolute; left: 100px; right: 100px; top: 120px; font-family: 'Instrument Serif',serif; font-size: 390px; line-height: 0.6; color: #FF2E72">“</div>
+<div style="position:absolute;left:100px;right:100px;top:300px;font-family:'Instrument Serif',serif;font-size:84px;line-height:1.05;letter-spacing:-0.01em;">Descobri informações importantes sobre um colega de faculdade que me salvaram de uma <span style="font-style: italic; background: #FF2E72; color: #fff; padding: 0 12px; width: 742px; height: 340px">situação perigosa.</span></div>
+<div style="position:absolute;left:100px;right:100px;bottom:110px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;">
+<div style="display:flex;flex-direction:column;gap:6px;"><div style="font-size:44px;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;">Amanda S.</div><div style="font-size:26px;font-weight:600;">Recife, PE</div></div>
+<div style="font-family:'Caveat',cursive;font-size:56px;color:#FF2E72;transform:rotate(-4deg);">essencial pra qualquer mulher</div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-16deg) translateZ(1800px) scale(1.07);z-index:8;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-16deg) translateZ(1800px) scale(1.07) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#EFEADF;color:#141012;">
+<div style="position:absolute;left:100px;right:100px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:48px;text-align:center;">
+<div style="font-family:'Instrument Serif',serif;font-size:66px;line-height:1.05;">e o <span style="font-style:italic;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;">primeiro passo</span><br>pra se proteger é</div>
+<div style="font-family:'Instrument Serif',serif;font-size:160px;line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;">parar de<br>contar com<br>a <span style="font-style:italic;background:#FF2E72;color:#fff;padding:0 18px;">sorte</span></div>
+<div style="font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1;">plinq</div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(8deg) translateZ(1800px) scale(1.14);z-index:9;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(8deg) translateZ(1800px) scale(1.14) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#FF2E72;color:#141012;">
+<div style="position:absolute;left:0;right:0;top:80px;text-align:center;font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1;color:#fff;">plinq</div>
+<div style="position:absolute;left:80px;right:80px;top:230px;font-family:'Instrument Serif',serif;font-size:96px;line-height:1;text-align:center;color:#fff;">não confie nele.</div>
+<div style="position:absolute;left:40px;right:40px;top:400px;font-size:250px;line-height:0.82;font-weight:900;letter-spacing:-0.04em;text-transform:uppercase;text-align:center;">dê um<br>plinq.</div>
+<div style="position:absolute;left:0;right:0;top:880px;display:flex;justify-content:center;"><div style="font-family:'Caveat',cursive;font-size:70px;padding:0 34px;border:3px solid #141012;border-radius:50%;transform:rotate(-3deg);">plinq.com.br</div></div>
+<div style="position:absolute;left:80px;right:80px;bottom:90px;display:flex;justify-content:space-between;font-size:24px;font-weight:600;color:#fff;"><div>+30.000 mulheres confiam</div><div>LGPD</div></div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-8deg) translateZ(1800px) scale(1.14);z-index:9;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-8deg) translateZ(1800px) scale(1.14) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#FF2E72;color:#141012;">
+<div style="position:absolute;left:150px;right:150px;top:150px;bottom:210px;background:#EFEADF;"></div>
+<div style="position:absolute;left:470px;top:110px;width:520px;height:620px;overflow:hidden;">
+<img src="/plinq-follow-up/assets/plinq/card-cruzados.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:saturate(1.1) contrast(1.05);">
+</div>
+<div style="position:absolute;left:220px;top:240px;font-family:'Instrument Serif',serif;font-size:76px;line-height:0.98;">porque<br>informação<br>é o seu<br>direito.</div>
+<div style="position:absolute;left:220px;right:220px;top:780px;font-size:84px;line-height:0.92;font-weight:900;letter-spacing:-0.03em;"><span style="text-decoration:underline;text-decoration-thickness:8px;text-underline-offset:10px;">segurança é</span><br><span style="text-decoration:underline;text-decoration-thickness:8px;text-underline-offset:10px;">a nossa</span><br><span style="text-decoration:underline;text-decoration-thickness:8px;text-underline-offset:10px;">missão.</span></div>
+<div style="position:absolute;left:150px;bottom:140px;font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1;color:#fff;">plinq</div>
+</div></div></div>
+      <div style="position:absolute;left:780px;top:30px;width:360px;height:450px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 0 70px rgba(255,255,255,0.22), 0 40px 80px rgba(0,0,0,0.6);transform:perspective(2400px) translateY(-36px) translateZ(90px);z-index:20;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateY(-36px) translateZ(90px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(0.0px) scale(0.33333);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:#EFEADF;color:#141012;">
+<div style="position:absolute;left:330px;top:300px;width:520px;height:560px;overflow:hidden;background:#FF2E72;">
+<img src="/plinq-follow-up/assets/plinq/card-amigas.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(1.1) contrast(1.05);">
+<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.18) 1.2px,transparent 1.8px);background-size:7px 7px;mix-blend-mode:multiply;opacity:0.5;"></div>
+</div>
+<div style="position:absolute;left:96px;top:110px;font-size:84px;line-height:0.95;font-weight:900;letter-spacing:-0.03em;">quando você<br>conhece alguém<br>novo,</div>
+<div style="position:absolute;left:96px;right:96px;bottom:110px;font-size:104px;line-height:0.9;font-weight:900;letter-spacing:-0.03em;text-align:right;"><span style="background:#FF2E72;color:#fff;padding:0 10px;">não dá pra</span><br>contar com<br>a sorte!</div>
+<div style="position:absolute;left:40px;top:675px;transform:rotate(-90deg);transform-origin:left top;font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1;">plinq</div>
+<div style="position:absolute;right:40px;top:160px;transform:rotate(90deg);transform-origin:right top;font-size:24px;font-weight:600;letter-spacing:0.02em;white-space:nowrap;">PLINQ.COM.BR</div>
+</div></div></div>
+    </div>
+  </div>
+  <span style="position:absolute;left:1742px;top:52px;font-family:Manrope,sans-serif;font-weight:500;font-size:22px;line-height:100%;letter-spacing:0.06em;color:#fff;white-space:nowrap">02 / 03</span>
+</section>
+
+<section data-label="03 Proposta" data-screen-label="03" style="background:rgb(10,10,10);overflow:hidden">
+  <div style="position:absolute;left:0;top:130px;width:1920px;display:flex;flex-direction:column;gap:20px;align-items:center">
+    <div style="display:flex;gap:14px;align-items:center;height:33px">
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+      <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">A proposta</span>
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+    </div>
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:90px;line-height:1.2;letter-spacing:-0.02em;color:#fff;text-align:center">Seu perfil e a Company page por <em style="font-style:italic">US$ 750.</em></h2>
+  </div>
+  <div style="position:absolute;left:410px;top:420px;width:1100px;background:rgb(22,22,22);box-shadow:inset 0 0 0 1px rgb(44,44,44), 0 16px 48px rgba(0,0,0,0.2);padding:40px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+    <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.12);padding:22px 28px;display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;flex-shrink:0;width:106px"><img src="/plinq-follow-up/assets/sabrine-matos.png" alt="Sabrine Matos" style="width:60px;height:60px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0"></div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:Manrope,sans-serif;font-weight:600;font-size:22px;line-height:1.2;color:#fff;white-space:nowrap">Perfil pessoal</span>
+        <span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6);white-space:nowrap">Sabrine Matos · US$ 500</span>
+      </div>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:190px;flex-shrink:0;white-space:nowrap"><span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:#fff">US$ 500</span><span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6)">/ mês</span></span>
+    </div>
+    <div style="border-radius:16px;border:1px solid rgba(74,222,128,0.4);background:rgba(74,222,128,0.06);padding:22px 28px;display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;flex-shrink:0;width:106px"><img src="/plinq-follow-up/assets/sabrine-matos.png" alt="Sabrine Matos" style="width:60px;height:60px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0;box-shadow:0 0 0 3px rgb(23,32,26);position:relative;z-index:1"><div style="width:60px;height:60px;border-radius:50%;background:#000;box-shadow:0 0 0 3px rgb(23,32,26);margin-left:-14px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><img src="/plinq-follow-up/assets/plinq-logo-white.png" alt="plinq" style="width:30px;height:16.4px;object-fit:contain;display:block"></div></div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:Manrope,sans-serif;font-weight:600;font-size:22px;line-height:1.2;color:#fff;white-space:nowrap">Perfil pessoal + Company page</span>
+        <span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6);white-space:nowrap">Sabrine e página da Plinq · US$ 500 + US$ 250</span>
+      </div>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:190px;flex-shrink:0;white-space:nowrap"><span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:rgb(74,222,128)">US$ 750</span><span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6)">/ mês no total</span></span>
+    </div>
+  </div>
+  <a href="https://cal.com/marcoshollmann/30min" target="_blank" rel="noopener" style="position:absolute;left:760px;top:900px;width:400px;height:84px;border-radius:14px;background:#fff;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:700;font-size:26px;line-height:100%;color:#000;text-decoration:none;white-space:nowrap" style-hover="background:rgb(225,225,225)">Agendar conversa (30min)</a>
+  <span style="position:absolute;left:1742px;top:96px;font-family:Manrope,sans-serif;font-weight:500;font-size:22px;line-height:100%;letter-spacing:0.06em;color:#fff;white-space:nowrap">03 / 03</span>
+</section>
+
+</x-import>
+</x-dc>
+<!-- isla:controles -->
+<button class="isla-seta isla-ant" type="button" aria-label="Slide anterior" onclick="islaIr(-1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button class="isla-seta isla-prox" type="button" aria-label="Próximo slide" onclick="islaIr(1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+<button class="isla-pdf" type="button" onclick="window.print()">Baixar PDF</button>
+<script>
+function islaIr(d, b) {
+  var s = document.querySelector('deck-stage');
+  if (s && s.next) d < 0 ? s.prev() : s.next();
+  if (b) b.blur(); // sem isso, Espaço com o botão em foco avançaria dois slides
+}
+document.addEventListener('slidechange', function (e) {
+  document.querySelector('.isla-ant').disabled = e.detail.index <= 0;
+  document.querySelector('.isla-prox').disabled = e.detail.index >= e.detail.total - 1;
+});
+</script>
+<!-- /isla:controles -->
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

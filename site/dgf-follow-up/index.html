@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Isla × DGF · Follow-up</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- isla:controles -->
+<script>
+// Para quem vê a proposta: esconde a barra de miniaturas do editor do Claude Design
+// e a barrinha de controles nativa do deck (as setas da Isla substituem).
+new MutationObserver(function () {
+  document.querySelectorAll('deck-stage:not([no-rail])').forEach(function (d) {
+    d.setAttribute('no-rail', '');
+    if (d.shadowRoot) {
+      var s = document.createElement('style');
+      s.textContent = '.overlay{display:none!important}';
+      d.shadowRoot.appendChild(s);
+    }
+  });
+}).observe(document.documentElement, { childList: true, subtree: true });
+</script>
+<style>
+.isla-pdf,.isla-seta{position:fixed;z-index:2147483001;appearance:none;cursor:pointer;color:#fff;
+  border:1px solid rgba(255,255,255,.14);background:rgba(20,20,20,.55);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  opacity:.75;transition:opacity .3s ease,background .3s ease}
+.isla-pdf{bottom:16px;right:16px;padding:10px 16px;border-radius:999px;
+  font:500 13px/1 Manrope,system-ui,sans-serif;letter-spacing:.01em}
+.isla-seta{top:50%;translate:0 -50%;width:52px;height:52px;border-radius:50%;padding:0;display:grid;place-items:center}
+.isla-seta svg{width:20px;height:20px}
+.isla-ant{left:16px}.isla-prox{right:16px}
+.isla-pdf:hover,.isla-pdf:focus-visible,.isla-seta:hover,.isla-seta:focus-visible{opacity:1;background:rgba(40,40,40,.75)}
+.isla-seta:disabled{opacity:.18;cursor:default;background:rgba(20,20,20,.55)}
+@media (max-width:640px){
+  .isla-seta{top:auto;bottom:16px;translate:none;width:44px;height:44px}
+  .isla-ant{left:16px}.isla-prox{left:68px;right:auto}
+}
+@media print{.isla-pdf,.isla-seta{display:none!important}}
+</style>
+<!-- /isla:controles -->
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A0A0A"/><text x="50" y="62" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#F5F5F2">isla</text></svg></template>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/dgf-follow-up/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#000}a{color:#fff}a:hover{color:#ccc}
+@keyframes islaRise{from{opacity:0;transform:translateY(28px)}}
+@media (prefers-reduced-motion:no-preference){
+deck-stage>section{transition:opacity 600ms cubic-bezier(.2,.8,.2,1),visibility 0s linear 600ms}
+deck-stage>section[data-deck-active]{transition:opacity 600ms cubic-bezier(.2,.8,.2,1),visibility 0s}
+deck-stage>section[data-deck-active]>*{animation:islaRise 800ms cubic-bezier(.2,.8,.2,1) both}
+deck-stage>section[data-deck-active]>*:nth-child(2){animation-delay:90ms}
+deck-stage>section[data-deck-active]>*:nth-child(3){animation-delay:180ms}
+deck-stage>section[data-deck-active]>*:nth-child(n+4){animation-delay:270ms}
+}</style>
+<script src="/dgf-follow-up/image-slot.js"></script>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="/dgf-follow-up/deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="01 Capa" data-screen-label="01" style="background:rgb(0,0,0);overflow:hidden">
+  <div style="position:absolute;left:0;top:-369px;width:1920px;height:1511px;opacity:0.33;overflow:hidden;background:rgb(10,10,10)">
+    <div style="position:absolute;left:0;top:215px;width:1920px;height:1511px;background:url(/dgf-follow-up/assets/hero-sea.png) center / cover no-repeat"></div>
+  </div>
+  <div style="position:absolute;left:0;top:58px;width:1920px;height:57px;display:flex;gap:20px;align-items:center;justify-content:center">
+    <img src="/dgf-follow-up/assets/isla-logo-white.svg" alt="isla" style="width:123.35px;height:43.648px;display:block">
+    <div style="width:1px;height:57px;background:rgb(105,105,105)"></div>
+    <div style="display:flex;align-items:flex-start;gap:2px;font-family:Poppins,sans-serif;font-size:48px;font-weight:800;letter-spacing:-0.06em;line-height:1;color:#fff">DGF<span style="font-size:18px">25</span></div>
+  </div>
+  <div style="position:absolute;left:96px;top:330px;width:1728px;display:flex;flex-direction:column;gap:28px;align-items:center">
+    <div style="display:flex;gap:14px;align-items:center;height:33px">
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+      <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">Proposta para a DGF</span>
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+    </div>
+    <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:90px;line-height:1.2;letter-spacing:-0.02em;color:#fff;text-align:center">Seu perfil e a DGF<br><em style="font-style:italic">no mesmo ritmo.</em></h1>
+    <p style="margin:0;width:1026px;font-family:Manrope,sans-serif;font-size:28px;line-height:1.3;color:rgba(255,255,255,0.8);text-align:center;text-wrap:pretty">Conteúdo estratégico e design dedicado para o seu perfil pessoal e para a Company page da DGF.</p>
+  </div>
+</section>
+
+<section data-label="02 Company page" data-screen-label="02" style="background:rgb(10,10,10);overflow:hidden">
+  <div style="position:absolute;left:132px;top:110px;width:1656px;display:flex;justify-content:space-between;align-items:flex-end;gap:80px">
+    <div style="flex:0 1 960px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;gap:14px;align-items:center;height:33px">
+        <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+        <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">Company page</span>
+      </div>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:80px;line-height:1.1;letter-spacing:-0.02em;color:#fff;text-wrap:pretty">A DGF presente toda semana, <em style="font-style:italic">com conteúdo e arte de nível profissional.</em></h2>
+    </div>
+    <div style="flex:0 1 560px;display:flex;flex-direction:column;gap:22px;padding-bottom:8px">
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:24px;line-height:1.35;color:rgb(74,222,128)">✓</span>
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:24px;line-height:1.35;color:rgba(255,255,255,0.8);text-wrap:pretty">Um designer dedicado cria cada post seguindo a identidade visual da marca.</p>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:24px;line-height:1.35;color:rgb(74,222,128)">✓</span>
+        <p style="margin:0;font-family:Manrope,sans-serif;font-size:24px;line-height:1.35;color:rgba(255,255,255,0.8);text-wrap:pretty">A marca aparece com constância e fala a mesma língua em todas as publicações.</p>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:560px;top:430px;width:800px;height:700px;border-radius:50%;background:radial-gradient(closest-side, rgba(255,255,255,0.22), rgba(255,255,255,0.07) 55%, rgba(255,255,255,0) 100%);filter:blur(30px);pointer-events:none"></div>
+  <div style="position:absolute;left:0;top:520px;width:1920px;height:520px;perspective:2400px;perspective-origin:50% 45%">
+    <div style="position:absolute;inset:0">
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(32deg) translateZ(1800px);z-index:6;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(32deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#F4F8F6;color:#0A1F15;">
+<div style="position:absolute;left:0;right:0;top:80px;display:flex;justify-content:center;"><div style="padding:14px 34px;border-radius:999px;background:#0A1F15;color:#fff;font-size:24px;font-weight:500;letter-spacing:0.08em;">PORTFÓLIO</div></div>
+<div style="position:absolute;left:80px;right:80px;top:180px;text-align:center;font-size:88px;line-height:1.05;font-weight:400;letter-spacing:-0.045em;">Empresas em que<br><span style="color:#1F7A4A;">acreditamos</span></div>
+<div style="position:absolute;left:80px;right:80px;top:380px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/tractian.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Tractian</div><div style="font-size:21px;color:#5C6964;">Manutenção preditiva</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/solides.webp" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Sólides</div><div style="font-size:21px;color:#5C6964;">Gestão de pessoas</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/memed.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Memed</div><div style="font-size:21px;color:#5C6964;">Prescrição digital</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/inhire.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">InHire</div><div style="font-size:21px;color:#5C6964;">Recrutamento</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/maggu.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Maggu</div><div style="font-size:21px;color:#5C6964;">IA para farmácias</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/makasi.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:contain;background:#0A1F15;padding:10px;box-sizing:border-box;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Makasí</div><div style="font-size:21px;color:#5C6964;">Crédito para obras</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/pluggy.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Pluggy</div><div style="font-size:21px;color:#5C6964;">Open Finance</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/takeat.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Takeat</div><div style="font-size:21px;color:#5C6964;">Foodservice</div></div>
+<div style="padding:24px;border-radius:28px;background:#FFFFFF;border:1px solid #DCE6E0;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;"><img src="/dgf-follow-up/assets/dgf/logos/mudflap.png" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;"><div style="font-size:30px;font-weight:500;letter-spacing:-0.02em;">Mudflap</div><div style="font-size:21px;color:#5C6964;">Fintech para truckers</div></div>
+</div>
+<div style="position:absolute;left:80px;right:80px;bottom:80px;display:flex;justify-content:space-between;align-items:center;">
+<div style="font-size:24px;color:#3F5148;">10 a 14 empresas por fundo.</div>
+<div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-32deg) translateZ(1800px);z-index:6;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-32deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#F4F8F6;color:#0A1F15;">
+<img src="/dgf-follow-up/assets/dgf/team.jpg" alt="" style="position:absolute;left:0;top:0;width:1080px;height:560px;object-fit:cover;object-position:50% 30%;">
+<div style="position:absolute;left:60px;top:60px;display:flex;align-items:center;gap:14px;padding:14px 28px;border-radius:999px;background:#0A1F15;color:#fff;font-size:24px;font-weight:500;"><div style="width:12px;height:12px;border-radius:50%;background:#3DB37A;"></div>Estamos contratando</div>
+<div style="position:absolute;left:80px;right:80px;top:640px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:84px;line-height:1.1;font-weight:400;letter-spacing:-0.04em;">
+<div>Procuramos um</div>
+<div style="margin-top:10px;padding:0 36px 8px;border-radius:999px;background:#0A1F15;color:#fff;">Analista de</div>
+<div>Investimentos</div>
+</div>
+<div style="position:absolute;left:80px;right:80px;top:1010px;display:flex;justify-content:center;flex-wrap:wrap;gap:14px;">
+<div style="padding:12px 26px;border-radius:999px;border:2px solid #0A1F15;font-size:22px;">São Paulo</div>
+<div style="padding:12px 26px;border-radius:999px;border:2px solid #0A1F15;font-size:22px;">Presencial</div>
+<div style="padding:12px 26px;border-radius:999px;border:2px solid #0A1F15;font-size:22px;">Software B2B</div>
+</div>
+<div style="position:absolute;left:80px;right:80px;bottom:80px;display:flex;justify-content:space-between;align-items:center;">
+<div style="display:flex;align-items:center;gap:14px;"><div style="width:68px;height:68px;border-radius:50%;border:2px solid #0A1F15;display:flex;align-items:center;justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0A1F15" stroke-width="2"><path d="M6 18L18 6M8 6h10v10"></path></svg></div><div style="padding:16px 30px;border-radius:999px;border:2px solid #0A1F15;font-size:22px;font-weight:500;letter-spacing:0.08em;">CANDIDATE-SE</div></div>
+<div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(24deg) translateZ(1800px);z-index:7;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(24deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#0A1F15;color:#fff;">
+<div style="position:absolute;left:0;right:0;top:80px;display:flex;justify-content:center;"><div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div></div>
+<div style="position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;">
+<div style="font-size:64px;font-weight:300;letter-spacing:-0.02em;">Mais de</div>
+<div style="font-size:400px;line-height:0.95;font-weight:300;letter-spacing:-0.08em;background:linear-gradient(180deg,#E6F7EE,#3DB37A);-webkit-background-clip:text;background-clip:text;color:transparent;">25</div>
+<div style="font-size:64px;line-height:1.1;font-weight:300;letter-spacing:-0.02em;">anos investindo em<br>software B2B</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:90px;display:flex;justify-content:center;"><div style="padding:20px 44px;border-radius:999px;background:#CFE3D8;color:#0A1F15;font-size:28px;font-weight:500;">Fundos vêm e vão. Gestoras permanecem.</div></div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-24deg) translateZ(1800px);z-index:7;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-24deg) translateZ(1800px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#0A1F15;color:#fff;">
+<div style="position:absolute;left:80px;right:80px;top:90px;font-size:116px;line-height:1.02;font-weight:400;letter-spacing:-0.045em;">O próximo ciclo<br>é <span style="color:#3DB37A;">AI-native</span></div>
+<div style="position:absolute;left:80px;top:390px;width:560px;font-size:32px;line-height:1.45;color:#A9B0AD;">Apoiamos plataformas B2B que automatizam workflows complexos e destravam valor que o software legado não alcançou.</div>
+<div style="position:absolute;left:80px;top:610px;display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:560px;display:flex;align-items:flex-end;gap:24px;padding:0 0 0 0;">
+<div style="flex:1;height:120px;border-radius:44px 44px 0 0;background:#143A27;"></div>
+<div style="flex:1;height:260px;border-radius:44px 44px 0 0;background:#1B5537;"></div>
+<div style="flex:1;height:400px;border-radius:44px 44px 0 0;background:#1F7A4A;"></div>
+<div style="flex:1;height:560px;border-radius:44px 44px 0 0;background:#3DB37A;"></div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(16deg) translateZ(1800px) scale(1.07);z-index:8;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(16deg) translateZ(1800px) scale(1.07) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#F4F8F6;color:#fff;">
+<div style="position:absolute;left:28%;width:44%;top:0;bottom:0;border-radius:40px;background:#0A1F15;"></div>
+<div style="position:absolute;left:0;right:0;top:14%;bottom:14%;border-radius:40px;background:#0A1F15;"></div>
+<div style="position:absolute;left:0;right:0;top:80px;display:flex;justify-content:center;"><div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div></div>
+<div style="position:absolute;left:60px;right:60px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;text-align:center;">
+<div style="font-size:112px;line-height:1.02;font-weight:400;letter-spacing:-0.045em;">Como apoiamos<br>founders através<br>dos <span style="color:#3DB37A;">ciclos</span></div>
+<div style="font-size:30px;color:#A9B0AD;">Board ativo, da tração à liderança.</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:80px;display:flex;justify-content:center;"><div style="width:84px;height:84px;border-radius:50%;border:2px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 6l12 12M18 8v10H8"></path></svg></div></div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-16deg) translateZ(1800px) scale(1.07);z-index:8;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-16deg) translateZ(1800px) scale(1.07) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#DCE8E1;color:#fff;">
+<div style="position:absolute;left:60px;right:60px;top:200px;bottom:200px;border-radius:56px;background:#0A1F15;display:flex;flex-direction:column;">
+<div style="display:flex;justify-content:center;padding-top:70px;"><div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div></div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 70px;text-align:center;font-size:84px;line-height:1.1;font-weight:400;letter-spacing:-0.04em;">O 8º fundo já está investindo. Lideramos rodadas com <span style="color:#3DB37A;">board seat.</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.15);">
+<div style="padding:36px;text-align:center;font-size:28px;color:#C9CECB;border-right:1px solid rgba(255,255,255,0.15);">Seed / Série A</div>
+<div style="padding:36px;text-align:center;font-size:28px;color:#C9CECB;">US$1M–3M</div>
+</div>
+</div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(8deg) translateZ(1800px) scale(1.14);z-index:9;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(8deg) translateZ(1800px) scale(1.14) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#07160F;color:#fff;">
+<div style="position:absolute;left:0;right:0;top:80px;display:flex;justify-content:center;"><div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div></div>
+<div style="position:absolute;left:80px;right:80px;top:190px;text-align:center;font-size:76px;line-height:1.1;font-weight:400;letter-spacing:-0.035em;">A tecnologia mudou<br>completamente.</div>
+<svg viewBox="0 0 1080 520" width="1080" height="520" style="position:absolute;left:0;top:420px;" fill="none">
+<path d="M90 470 C 220 300, 300 250, 380 300 S 520 420, 620 330 S 800 120, 990 60" stroke="#3DB37A" stroke-width="4"></path>
+<path d="M90 470 C 200 380, 280 280, 380 230 S 520 380, 620 360 S 820 260, 990 170" stroke="rgba(255,255,255,0.55)" stroke-width="3"></path>
+<circle cx="90" cy="470" r="9" fill="#fff"></circle><circle cx="380" cy="300" r="9" fill="#3DB37A"></circle><circle cx="620" cy="330" r="9" fill="#3DB37A"></circle><circle cx="990" cy="60" r="11" fill="#3DB37A"></circle>
+<circle cx="380" cy="230" r="7" fill="#fff"></circle><circle cx="620" cy="360" r="7" fill="#fff"></circle><circle cx="990" cy="170" r="7" fill="#fff"></circle>
+</svg>
+<div style="position:absolute;left:80px;right:80px;bottom:110px;text-align:center;font-size:76px;line-height:1.1;font-weight:400;letter-spacing:-0.035em;">A disciplina<br><span style="color:#3DB37A;">não mudou.</span></div>
+</div></div></div>
+      <div style="position:absolute;left:815px;top:38px;width:290px;height:362px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgb(44,44,44), 0 24px 60px rgba(0,0,0,0.5);transform:perspective(2400px) translateZ(-1800px) rotateY(-8deg) translateZ(1800px) scale(1.14);z-index:9;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateZ(-1800px) rotateY(-8deg) translateZ(1800px) scale(1.14) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(-0.3px) scale(0.26852);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#0A1F15;color:#fff;">
+<div style="position:absolute;left:60px;top:60px;width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 6l12 12M18 8v10H8"></path></svg></div>
+<div style="position:absolute;right:60px;bottom:60px;width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 18L6 6M16 6H6v10"></path></svg></div>
+<div style="position:absolute;left:60px;right:60px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;font-size:104px;line-height:1.08;font-weight:400;letter-spacing:-0.045em;">
+<div>Founders querem</div>
+<div>um parceiro,</div>
+<div style="margin:10px 0;padding:0 36px 8px;border-radius:999px;background:#CFE3D8;color:#0A1F15;">não um wire.</div>
+<div style="color:#A9B0AD;">Ficamos mais perto</div>
+<div style="color:#A9B0AD;">no trimestre difícil.</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:84px;display:flex;justify-content:center;"><div style="display:flex;align-items:flex-start;gap:2px;font-size:40px;font-weight:800;letter-spacing:-0.06em;line-height:1;">DGF<span style="font-size:15px;">25</span></div></div>
+</div></div></div>
+      <div style="position:absolute;left:780px;top:30px;width:360px;height:450px;border-radius:16px;display:block;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 0 70px rgba(255,255,255,0.22), 0 40px 80px rgba(0,0,0,0.6);transform:perspective(2400px) translateY(-36px) translateZ(90px);z-index:20;transition:transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms;cursor:pointer;overflow:hidden;background:#111" style-hover="transform:perspective(2400px) translateY(-36px) translateZ(90px) translateY(-28px) scale(1.08);z-index:30;box-shadow:0 0 0 1px rgba(255,255,255,0.35), 0 40px 90px rgba(0,0,0,0.7)"><div style="width:1080px;height:1350px;transform:translateY(0.0px) scale(0.33333);transform-origin:0 0;pointer-events:none"><div style="position:relative;width:1080px;height:1350px;overflow:hidden;border-radius:40px;background:#F4F8F6;color:#0A1F15;">
+<div style="position:absolute;left:0;right:0;top:0;height:330px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+<img src="/dgf-follow-up/assets/dgf/handshake.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:0 0 36px 0;">
+<img src="/dgf-follow-up/assets/dgf/office.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:0 0 0 36px;">
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:330px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+<img src="/dgf-follow-up/assets/dgf/meeting.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:0 36px 0 0;">
+<img src="/dgf-follow-up/assets/dgf/founder-laptop.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:36px 0 0 0;">
+</div>
+<div style="position:absolute;left:80px;right:80px;top:390px;height:570px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;text-align:center;">
+<div style="font-size:66px;line-height:1.15;font-weight:400;letter-spacing:-0.03em;">Construindo software B2B<br>que compõe valor?<br><span style="color:#8FA39A;">A gente quer conhecer.</span></div>
+<div style="display:flex;align-items:center;gap:18px;">
+<div style="width:76px;height:76px;border-radius:50%;border:2px solid #0A1F15;display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A1F15" stroke-width="2"><path d="M6 18L18 6M8 6h10v10"></path></svg></div>
+<div style="padding:20px 36px;border-radius:999px;border:2px solid #0A1F15;font-size:24px;font-weight:500;letter-spacing:0.08em;">STARTUPS@DGF.COM.BR</div>
+</div>
+</div>
+</div></div></div>
+    </div>
+  </div>
+  <span style="position:absolute;left:1742px;top:52px;font-family:Manrope,sans-serif;font-weight:500;font-size:22px;line-height:100%;letter-spacing:0.06em;color:#fff;white-space:nowrap">02 / 03</span>
+</section>
+
+<section data-label="03 Proposta" data-screen-label="03" style="background:rgb(10,10,10);overflow:hidden">
+  <div style="position:absolute;left:0;top:130px;width:1920px;display:flex;flex-direction:column;gap:20px;align-items:center">
+    <div style="display:flex;gap:14px;align-items:center;height:33px">
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+      <span style="font-family:Manrope,sans-serif;font-size:24px;line-height:100%;color:rgba(255,255,255,0.8);text-transform:uppercase;white-space:nowrap">A proposta</span>
+      <div style="width:45px;height:1px;background:rgb(204,204,204)"></div>
+    </div>
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:90px;line-height:1.2;letter-spacing:-0.02em;color:#fff;text-align:center">Seu perfil e a Company page por <em style="font-style:italic">US$ 750.</em></h2>
+  </div>
+  <div style="position:absolute;left:410px;top:420px;width:1100px;background:rgb(22,22,22);box-shadow:inset 0 0 0 1px rgb(44,44,44), 0 16px 48px rgba(0,0,0,0.2);padding:40px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+    <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.12);padding:22px 28px;display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;flex-shrink:0;width:106px"><div style="width:60px;height:60px;border-radius:50%;background:rgb(40,40,40);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:Manrope,sans-serif;font-weight:600;font-size:22px;color:rgba(255,255,255,0.75)">in</div></div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:Manrope,sans-serif;font-weight:600;font-size:22px;line-height:1.2;color:#fff;white-space:nowrap">Perfil pessoal</span>
+        <span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6);white-space:nowrap">Seu perfil no LinkedIn</span>
+      </div>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:190px;flex-shrink:0;white-space:nowrap"><span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:#fff">US$ 500</span><span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6)">/ mês</span></span>
+    </div>
+    <div style="border-radius:16px;border:1px solid rgba(74,222,128,0.4);background:rgba(74,222,128,0.06);padding:22px 28px;display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;flex-shrink:0;width:106px"><div style="width:60px;height:60px;border-radius:50%;background:rgb(40,40,40);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), 0 0 0 3px rgb(23,32,26);position:relative;z-index:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:Manrope,sans-serif;font-weight:600;font-size:22px;color:rgba(255,255,255,0.75)">in</div><div style="width:60px;height:60px;border-radius:50%;background:#000;box-shadow:0 0 0 3px rgb(23,32,26);margin-left:-14px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="display:flex;align-items:flex-start;font-family:Poppins,sans-serif;font-size:17px;font-weight:800;letter-spacing:-0.06em;line-height:1;color:#fff">DGF</div></div></div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:Manrope,sans-serif;font-weight:600;font-size:22px;line-height:1.2;color:#fff;white-space:nowrap">Perfil pessoal + Company page</span>
+        <span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6);white-space:nowrap">Seu perfil e página da DGF · US$ 500 + US$ 250</span>
+      </div>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:190px;flex-shrink:0;white-space:nowrap"><span style="font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:rgb(74,222,128)">US$ 750</span><span style="font-family:Manrope,sans-serif;font-size:18px;line-height:1.3;color:rgba(255,255,255,0.6)">/ mês no total</span></span>
+    </div>
+  </div>
+  <a href="https://cal.com/marcoshollmann/30min" target="_blank" rel="noopener" style="position:absolute;left:760px;top:900px;width:400px;height:84px;border-radius:14px;background:#fff;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:700;font-size:26px;line-height:100%;color:#000;text-decoration:none;white-space:nowrap" style-hover="background:rgb(225,225,225)">Agendar conversa (30min)</a>
+  <span style="position:absolute;left:1742px;top:96px;font-family:Manrope,sans-serif;font-weight:500;font-size:22px;line-height:100%;letter-spacing:0.06em;color:#fff;white-space:nowrap">03 / 03</span>
+</section>
+
+</x-import>
+</x-dc>
+<!-- isla:controles -->
+<button class="isla-seta isla-ant" type="button" aria-label="Slide anterior" onclick="islaIr(-1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button class="isla-seta isla-prox" type="button" aria-label="Próximo slide" onclick="islaIr(1,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+<button class="isla-pdf" type="button" onclick="window.print()">Baixar PDF</button>
+<script>
+function islaIr(d, b) {
+  var s = document.querySelector('deck-stage');
+  if (s && s.next) d < 0 ? s.prev() : s.next();
+  if (b) b.blur(); // sem isso, Espaço com o botão em foco avançaria dois slides
+}
+document.addEventListener('slidechange', function (e) {
+  document.querySelector('.isla-ant').disabled = e.detail.index <= 0;
+  document.querySelector('.isla-prox').disabled = e.detail.index >= e.detail.total - 1;
+});
+</script>
+<!-- /isla:controles -->
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
