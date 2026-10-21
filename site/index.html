@@ -87,6 +87,76 @@
     .vazio em { font-family: "Instrument Serif", serif; font-size: 28px; color: var(--porcelain); display: block; margin-bottom: 8px; }
     footer { padding-bottom: 48px; font-size: 13px; color: var(--grey-2); }
 
+    .adicionar { height: 44px; gap: 8px; padding: 0 20px; }
+    .adicionar:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+    .aviso-supabase { margin-bottom: 16px; padding: 12px 18px; border-radius: 14px; border: 1px solid var(--line); color: var(--grey-1); font-size: 14px; }
+    .acoes { flex-wrap: wrap; }
+    .thumb iframe.ao-vivo { position: absolute; top: 0; left: 0; width: 1600px; height: 900px; border: 0; pointer-events: none;
+      transform-origin: 0 0; transform: scale(var(--escala, .2)); background: var(--ink); }
+
+    .dlg { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 32px; border-radius: 24px; color: var(--porcelain);
+      border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgb(245 245 242 / .05), rgb(245 245 242 / .015)); background-color: rgb(16 16 16 / .92);
+      backdrop-filter: blur(24px) saturate(120%); -webkit-backdrop-filter: blur(24px) saturate(120%);
+      box-shadow: inset 0 1px 0 0 rgb(245 245 242 / .09), 0 40px 120px -20px rgb(0 0 0 / .9); overflow-y: auto; }
+    .dlg::backdrop { background: rgb(0 0 0 / .6); backdrop-filter: blur(4px); }
+    .dlg[open] { animation: dlg .7s var(--ease); }
+    @keyframes dlg { from { opacity: 0; translate: 0 16px; } }
+    .dlg h3 { margin-top: 14px; font-family: "Instrument Serif", serif; font-weight: 400; font-size: clamp(32px, 6vw, 44px); line-height: 1.02; letter-spacing: -0.02em; }
+    .dlg h3 em, .dlg-sub em { font-style: italic; }
+    .dlg-sub { margin-top: 10px; color: var(--grey-1); font-size: 15px; line-height: 1.55; text-wrap: pretty; }
+    .fechar { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: transparent;
+      color: var(--grey-1); font: 300 22px/1 "Inter Tight", sans-serif; cursor: pointer; transition: color .6s var(--ease), border-color .6s var(--ease); }
+    .fechar:hover { color: var(--porcelain); border-color: var(--line-strong); }
+    .soltar { position: relative; margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 32px 16px; text-align: center;
+      border: 1px dashed var(--line-strong); border-radius: 18px; color: var(--grey-1); cursor: pointer; transition: border-color .6s var(--ease), background .6s var(--ease); }
+    .soltar:hover, .soltar.sobre { border-color: rgb(245 245 242 / .45); background: rgb(245 245 242 / .03); }
+    .soltar strong { color: var(--porcelain); font-weight: 500; }
+    .soltar small { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--porcelain); opacity: .8; word-break: break-all; }
+    .soltar input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    fieldset { margin-top: 20px; border: 0; padding: 0; min-width: 0; }
+    legend { font-size: 14px; color: var(--grey-1); margin-bottom: 10px; }
+    .opcoes { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; }
+    .opcao { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); cursor: pointer; font-size: 14px; }
+    .opcao:has(input:checked) { border-color: var(--line-strong); background: rgb(245 245 242 / .04); }
+    .opcao input { accent-color: var(--porcelain); }
+    .opcao span { display: flex; flex-direction: column; min-width: 0; word-break: break-word; }
+    .opcao small { color: var(--grey-2); font-size: 12px; }
+    .campos { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .campos label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--grey-1); min-width: 0; }
+    .campos .largo { grid-column: 1 / -1; }
+    .campos input { width: 100%; height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: rgb(10 10 10 / .6);
+      color: var(--porcelain); font: 400 15px "Inter Tight", system-ui, sans-serif; letter-spacing: 0; text-transform: none; transition: border-color .6s var(--ease); }
+    .campos input:focus { outline: none; border-color: var(--line-strong); }
+    .campos input[readonly] { color: var(--grey-1); }
+    .prefixo { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; background: rgb(10 10 10 / .6); }
+    .prefixo span { padding-left: 14px; color: var(--grey-2); font-family: ui-monospace, "SF Mono", Menlo, monospace; text-transform: none; }
+    .prefixo input { border: 0; background: transparent; padding-left: 2px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; }
+    .campos small { font-size: 12px; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--grey-2); }
+    @media (max-width: 520px) { .dlg { padding: 24px 20px; } .campos { grid-template-columns: 1fr; } }
+    progress { margin-top: 20px; width: 100%; height: 4px; appearance: none; border: 0; border-radius: 99px; background: var(--ink-3); overflow: hidden; }
+    progress::-webkit-progress-bar { background: var(--ink-3); }
+    progress::-webkit-progress-value { background: var(--porcelain); transition: width .4s var(--ease); }
+    progress::-moz-progress-bar { background: var(--porcelain); }
+    .status { margin-top: 14px; min-height: 1.4em; font-size: 14px; color: var(--grey-1); }
+    .status:empty { min-height: 0; margin: 0; }
+    .dlg-acoes { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-top: 24px; }
+    #form-envio[data-etapa="enviando"] .soltar, #form-envio[data-etapa="enviando"] .campos, #form-envio[data-etapa="enviando"] fieldset { opacity: .5; pointer-events: none; }
+    #form-envio[data-etapa="pronto"] .envio-acoes, #form-envio[data-etapa="pronto"] .soltar, #form-envio[data-etapa="pronto"] .campos, #form-envio[data-etapa="pronto"] fieldset { display: none; }
+    .pronto { margin-top: 24px; padding: 18px; border-radius: 16px; border: 1px solid var(--line-strong); }
+    .pronto a { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; word-break: break-all; }
+    .pronto .dlg-acoes { margin-top: 16px; }
+    .btn:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-p { height: 34px; padding: 0 14px; font-size: 13px; }
+    .btn-perigo:hover { border-color: rgb(255 120 110 / .6); color: rgb(255 170 160); }
+    .versoes { list-style: none; padding: 0; margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .versao { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); }
+    .versao.no-ar { border-color: var(--line-strong); background: rgb(245 245 242 / .04); }
+    .versao-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 220px; }
+    .versao-info strong { font-weight: 500; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+    .versao-info span { font-size: 12px; color: var(--grey-1); word-break: break-word; }
+    .versao-info .selo { font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: var(--porcelain); color: var(--ink); }
+    .versao-acoes { display: flex; gap: 6px; }
+
     @media (prefers-reduced-motion: reduce) { .card { animation: none; opacity: 1; translate: none; } .grain { animation: none; } }
   </style>
 </head>
@@ -103,7 +173,7 @@
   <header class="container">
     <span class="eyebrow">Isla · Propostas</span>
     <h1>Biblioteca de <em>apresentações.</em></h1>
-    <p class="lede">12 apresentações no ar. Só o time da Isla vê esta página; cada cliente recebe apenas o próprio link.</p>
+    <p class="lede"><span id="total">12 apresentações no ar</span>. Só o time da Isla vê esta página; cada cliente recebe apenas o próprio link.</p>
   </header>
 
   <main class="container">
@@ -117,171 +187,176 @@
         <button class="chip" type="button" data-filtro="deck" aria-pressed="false">Decks<span>11</span></button>
         <button class="chip" type="button" data-filtro="pagina" aria-pressed="false">Páginas<span>1</span></button>
       </div>
+      <button class="btn btn-primario adicionar" type="button" id="btn-adicionar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Adicionar apresentação
+      </button>
     </div>
+    <p class="aviso-supabase" id="aviso-supabase" hidden></p>
 
     <section class="grade" id="grade">
-      <article class="card" data-tipo="deck" data-busca="zyla isla × zyla · follow-up zyla-follow-up" style="--i:0">
+      <article class="card" data-slug="zyla-follow-up" data-titulo="Isla × Zyla · Follow-up" data-tipo="deck" data-busca="zyla isla × zyla · follow-up zyla-follow-up" style="--i:0">
         <a class="thumb" href="/zyla-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × Zyla · Follow-up">
           <img src="/_painel/thumbs/zyla-follow-up.jpg?v=1792588174" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>Zyla</h2>
-          <p class="meta"><span class="slug">/zyla-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/zyla-follow-up</span><span class="sep">·</span><span class="data">atualizada em 21 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/zyla-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="zyla-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="abacatepay isla × abacatepay · follow-up abacatepay-follow-up" style="--i:1">
+      <article class="card" data-slug="abacatepay-follow-up" data-titulo="Isla × AbacatePay · Follow-up" data-tipo="deck" data-busca="abacatepay isla × abacatepay · follow-up abacatepay-follow-up" style="--i:1">
         <a class="thumb" href="/abacatepay-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × AbacatePay · Follow-up">
           <img src="/_painel/thumbs/abacatepay-follow-up.jpg?v=1792522448" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>AbacatePay</h2>
-          <p class="meta"><span class="slug">/abacatepay-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/abacatepay-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/abacatepay-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="abacatepay-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="dgf isla × dgf · follow-up dgf-follow-up" style="--i:2">
+      <article class="card" data-slug="dgf-follow-up" data-titulo="Isla × DGF · Follow-up" data-tipo="deck" data-busca="dgf isla × dgf · follow-up dgf-follow-up" style="--i:2">
         <a class="thumb" href="/dgf-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × DGF · Follow-up">
           <img src="/_painel/thumbs/dgf-follow-up.jpg?v=1792522449" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>DGF</h2>
-          <p class="meta"><span class="slug">/dgf-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/dgf-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/dgf-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="dgf-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="humanaz isla × humanaz · follow-up humanaz-follow-up" style="--i:3">
+      <article class="card" data-slug="humanaz-follow-up" data-titulo="Isla × HumanAZ · Follow-up" data-tipo="deck" data-busca="humanaz isla × humanaz · follow-up humanaz-follow-up" style="--i:3">
         <a class="thumb" href="/humanaz-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × HumanAZ · Follow-up">
           <img src="/_painel/thumbs/humanaz-follow-up.jpg?v=1792522451" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>HumanAZ</h2>
-          <p class="meta"><span class="slug">/humanaz-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/humanaz-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/humanaz-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="humanaz-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="mira isla × mira · follow-up mira-follow-up" style="--i:4">
+      <article class="card" data-slug="mira-follow-up" data-titulo="Isla × Mira · Follow-up" data-tipo="deck" data-busca="mira isla × mira · follow-up mira-follow-up" style="--i:4">
         <a class="thumb" href="/mira-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × Mira · Follow-up">
           <img src="/_painel/thumbs/mira-follow-up.jpg?v=1792522452" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>Mira</h2>
-          <p class="meta"><span class="slug">/mira-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/mira-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/mira-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="mira-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="norte ventures isla × norte ventures · follow-up norte-follow-up" style="--i:5">
+      <article class="card" data-slug="norte-follow-up" data-titulo="Isla × Norte Ventures · Follow-up" data-tipo="deck" data-busca="norte ventures isla × norte ventures · follow-up norte-follow-up" style="--i:5">
         <a class="thumb" href="/norte-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × Norte Ventures · Follow-up">
           <img src="/_painel/thumbs/norte-follow-up.jpg?v=1792522454" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>Norte Ventures</h2>
-          <p class="meta"><span class="slug">/norte-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/norte-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/norte-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="norte-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="plinq isla × plinq · proposta plinq" style="--i:6">
+      <article class="card" data-slug="plinq" data-titulo="Isla × Plinq · Proposta" data-tipo="deck" data-busca="plinq isla × plinq · proposta plinq" style="--i:6">
         <a class="thumb" href="/plinq" target="_blank" rel="noopener" aria-label="Abrir Isla × Plinq · Proposta">
           <img src="/_painel/thumbs/plinq.jpg?v=1792522455" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Proposta · Deck · 12 slides</span>
           <h2>Plinq</h2>
-          <p class="meta"><span class="slug">/plinq</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/plinq</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/plinq" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="plinq">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="plinq isla × plinq · follow-up plinq-follow-up" style="--i:7">
+      <article class="card" data-slug="plinq-follow-up" data-titulo="Isla × Plinq · Follow-up" data-tipo="deck" data-busca="plinq isla × plinq · follow-up plinq-follow-up" style="--i:7">
         <a class="thumb" href="/plinq-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × Plinq · Follow-up">
           <img src="/_painel/thumbs/plinq-follow-up.jpg?v=1792522456" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>Plinq</h2>
-          <p class="meta"><span class="slug">/plinq-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/plinq-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/plinq-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="plinq-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="preflow isla × preflow · follow-up preflow-follow-up" style="--i:8">
+      <article class="card" data-slug="preflow-follow-up" data-titulo="Isla × Preflow · Follow-up" data-tipo="deck" data-busca="preflow isla × preflow · follow-up preflow-follow-up" style="--i:8">
         <a class="thumb" href="/preflow-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × Preflow · Follow-up">
           <img src="/_painel/thumbs/preflow-follow-up.jpg?v=1792522457" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Follow-up · Deck · 3 slides</span>
           <h2>Preflow</h2>
-          <p class="meta"><span class="slug">/preflow-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/preflow-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/preflow-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="preflow-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="zazos isla × zazos · proposta zazos" style="--i:9">
+      <article class="card" data-slug="zazos" data-titulo="Isla × Zazos · Proposta" data-tipo="deck" data-busca="zazos isla × zazos · proposta zazos" style="--i:9">
         <a class="thumb" href="/zazos" target="_blank" rel="noopener" aria-label="Abrir Isla × Zazos · Proposta">
           <img src="/_painel/thumbs/zazos.jpg?v=1792522458" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Proposta · Deck · 12 slides</span>
           <h2>Zazos</h2>
-          <p class="meta"><span class="slug">/zazos</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/zazos</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/zazos" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="zazos">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="deck" data-busca="zazos isla × zazos · company page zazos-follow-up" style="--i:10">
+      <article class="card" data-slug="zazos-follow-up" data-titulo="Isla × Zazos · Company page" data-tipo="deck" data-busca="zazos isla × zazos · company page zazos-follow-up" style="--i:10">
         <a class="thumb" href="/zazos-follow-up" target="_blank" rel="noopener" aria-label="Abrir Isla × Zazos · Company page">
           <img src="/_painel/thumbs/zazos-follow-up.jpg?v=1792522459" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Company page · Deck · 3 slides</span>
           <h2>Zazos</h2>
-          <p class="meta"><span class="slug">/zazos-follow-up</span><span class="sep">·</span>atualizada em 20 de out. de 2026</p>
+          <p class="meta"><span class="slug">/zazos-follow-up</span><span class="sep">·</span><span class="data">atualizada em 20 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/zazos-follow-up" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="zazos-follow-up">Copiar link</button>
           </div>
         </div>
       </article>
-      <article class="card" data-tipo="pagina" data-busca="cliente exemplo proposta isla · cliente exemplo exemplo" style="--i:11">
+      <article class="card" data-slug="exemplo" data-titulo="Proposta Isla · Cliente Exemplo" data-tipo="pagina" data-busca="cliente exemplo proposta isla · cliente exemplo exemplo" style="--i:11">
         <a class="thumb" href="/exemplo" target="_blank" rel="noopener" aria-label="Abrir Proposta Isla · Cliente Exemplo">
           <img src="/_painel/thumbs/exemplo.jpg?v=1792511880" alt="" loading="lazy" decoding="async">
         </a>
         <div class="corpo">
           <span class="eyebrow">Proposta · Página</span>
           <h2>Cliente Exemplo</h2>
-          <p class="meta"><span class="slug">/exemplo</span><span class="sep">·</span>atualizada em 16 de out. de 2026</p>
+          <p class="meta"><span class="slug">/exemplo</span><span class="sep">·</span><span class="data">atualizada em 16 de out. de 2026</span></p>
           <div class="acoes">
             <a class="btn btn-primario" href="/exemplo" target="_blank" rel="noopener">Abrir</a>
             <button class="btn btn-ghost" type="button" data-copiar="exemplo">Copiar link</button>
@@ -292,45 +367,56 @@
     </section>
   </main>
 
-  <footer class="container">Atualizado em 21 de out. de 2026. Para atualizar: <code>node scripts/gerar-painel.mjs</code> e push.</footer>
+  <footer class="container">Pastas do repositório atualizadas em 21 de out. de 2026. Versões enviadas pelo painel aparecem na hora.</footer>
 
-  <script>
-    (function () {
-      var cards = [].slice.call(document.querySelectorAll('.card'));
-      var busca = document.getElementById('busca');
-      var vazio = document.getElementById('vazio');
-      var chips = [].slice.call(document.querySelectorAll('.chip'));
-      var filtro = 'todas';
-      function aplicar() {
-        var q = busca.value.trim().normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-        var visiveis = 0;
-        cards.forEach(function (c) {
-          var ok = (filtro === 'todas' || c.dataset.tipo === filtro) && (!q || c.dataset.busca.indexOf(q) !== -1);
-          c.hidden = !ok;
-          if (ok) visiveis++;
-        });
-        vazio.hidden = visiveis > 0;
-      }
-      busca.addEventListener('input', aplicar);
-      chips.forEach(function (ch) {
-        ch.addEventListener('click', function () {
-          filtro = ch.dataset.filtro;
-          chips.forEach(function (o) { o.setAttribute('aria-pressed', String(o === ch)); });
-          aplicar();
-        });
-      });
-      document.addEventListener('click', function (e) {
-        var b = e.target.closest('[data-copiar]');
-        if (!b) return;
-        var url = location.origin + '/' + b.dataset.copiar;
-        var feito = function () {
-          b.textContent = 'Link copiado'; b.classList.add('ok');
-          setTimeout(function () { b.textContent = 'Copiar link'; b.classList.remove('ok'); }, 1800);
-        };
-        if (navigator.clipboard) navigator.clipboard.writeText(url).then(feito, function () { prompt('Copie o link:', url); });
-        else prompt('Copie o link:', url);
-      });
-    })();
-  </script>
+  <dialog class="dlg" id="dlg-envio" aria-labelledby="envio-titulo">
+    <form id="form-envio" method="dialog" data-etapa="arquivo" novalidate>
+      <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+      <span class="eyebrow">Envio</span>
+      <h3 id="envio-titulo">Adicionar <em>apresentação.</em></h3>
+      <p class="dlg-sub" id="envio-sub"></p>
+      <label class="soltar" id="envio-soltar">
+        <input type="file" name="zip" accept=".zip,application/zip,application/x-zip-compressed">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span><strong>Escolha o .zip</strong> ou arraste para cá</span>
+        <small id="envio-nome-arquivo"></small>
+      </label>
+      <fieldset id="envio-candidatos" hidden>
+        <legend>O zip tem mais de uma apresentação. Qual publicar?</legend>
+        <div class="opcoes" id="envio-lista"></div>
+      </fieldset>
+      <div class="campos" id="envio-campos" hidden>
+        <label>Cliente<input name="cliente" autocomplete="off" required placeholder="Ex: Zyla"></label>
+        <label>Assunto<input name="assunto" autocomplete="off" placeholder="Ex: Follow-up, Proposta, Pitch"></label>
+        <label class="largo">Link<span class="prefixo"><span>/</span><input name="slug" autocomplete="off" spellcheck="false" required pattern="[a-z0-9]+(-[a-z0-9]+)*"></span>
+          <small id="envio-slug-aviso"></small></label>
+      </div>
+      <progress id="envio-barra" hidden></progress>
+      <p class="status" id="envio-status" role="status" aria-live="polite"></p>
+      <div class="pronto" id="envio-ok" hidden>
+        <p>No ar em <a id="envio-link" target="_blank" rel="noopener"></a></p>
+        <div class="dlg-acoes">
+          <button class="btn btn-ghost" type="button" id="envio-copiar">Copiar link</button>
+          <button class="btn btn-primario" type="button" data-fechar>Concluir</button>
+        </div>
+      </div>
+      <div class="dlg-acoes envio-acoes">
+        <button class="btn btn-ghost" type="button" data-fechar>Cancelar</button>
+        <button class="btn btn-primario" type="submit" id="envio-enviar" disabled>Publicar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dlg" id="dlg-versoes" aria-labelledby="versoes-titulo">
+    <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+    <span class="eyebrow">Versões · <span id="versoes-slug"></span></span>
+    <h3 id="versoes-titulo"></h3>
+    <p class="dlg-sub">A versão <em>no ar</em> é a que o cliente vê. As outras ficam guardadas: dá para ver, publicar de novo ou excluir.</p>
+    <ul class="versoes" id="versoes-lista"></ul>
+    <p class="status" id="versoes-aviso" role="status" aria-live="polite"></p>
+    <div class="dlg-acoes"><button class="btn btn-primario" type="button" id="versoes-nova">Enviar nova versão</button></div>
+  </dialog>
+
+  <script type="module" src="/_painel/painel.js?v=1792604427"></script>
 </body>
 </html>

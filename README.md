@@ -28,6 +28,14 @@ A página inicial lista todas as apresentações, com miniatura, busca e "Copiar
 - **Atualizar:** `node scripts/gerar-painel.mjs` e push (os scripts de importação já fazem a primeira parte).
 - **Dar/tirar acesso:** na Vercel, projeto `isla-propostas` → Settings → Environment Variables → `PAINEL_ACESSOS` (Production), no formato `marcos@isla.to:senha,ana@isla.to:outrasenha`. `PAINEL_SEGREDO` assina as sessões (trocar desloga todo mundo). Depois, faça um redeploy (Deployments → ⋯ → Redeploy) para valer.
 
+## Enviar pelo painel (sem terminal)
+
+No painel, **Adicionar apresentação** → escolha o `.zip` exportado do Claude Design (ou uma pasta com `index.html`, compactada) → confira cliente, assunto e link → **Publicar**. Se o projeto tiver vários decks, o painel pergunta qual publicar.
+
+Cada card tem **Versões**: enviar uma nova versão (vira a que o cliente vê), ver qualquer versão (`/<slug>?v=...`, só logado), publicar de novo uma antiga ou excluir. Nas propostas que vieram do repositório, a pasta `site/<slug>/` aparece como **Original**.
+
+Os arquivos ficam no Supabase (projeto `isla-propostas`, plano gratuito). Para funcionar, a Vercel precisa de `SUPABASE_URL` e `SUPABASE_SERVICE_KEY` em Production (Settings → Environment Variables) e de um novo deploy.
+
 ## Criar uma proposta
 
 ### Opção A: apresentação feita no Claude Design

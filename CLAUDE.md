@@ -32,6 +32,15 @@ Apresentações em slides vindas do Claude Design são publicadas como estão (v
 - Depois de criar ou mudar uma proposta, rode `node scripts/gerar-painel.mjs` (os scripts de importação já rodam) e inclua `site/index.html` e `site/_painel/` no commit.
 - Acessos: variável `PAINEL_ACESSOS` na Vercel (produção), formato `email:senha,email2:senha2`, e `PAINEL_SEGREDO` (chave das sessões). Mudar exige um novo deploy (push ou `vercel --prod`). Nunca coloque senhas no repositório.
 
+## Envio pelo painel (Supabase)
+O time também publica sem passar pelo chat: botão **Adicionar apresentação** no painel (zip do Claude Design, deck em arquivo único ou pasta com `index.html`) e, em cada card, **Versões** (enviar nova versão, ver, publicar, excluir).
+- Os arquivos ficam no Supabase (projeto `isla-propostas`, ref `zrqeupjcmzzaaghvfdja`, plano gratuito, São Paulo). Bucket público `apresentacoes/<slug>/<versão>/`; bucket privado `painel/indice.json` com as versões e qual está no ar. Os buckets são criados sozinhos no primeiro envio.
+- O `middleware.js` atende `/<slug>`: se o índice tem versão no ar, serve do Supabase (com os controles de `lib/controles.js`); senão, segue para `site/<slug>/` (a versão "Original"). `?v=<versão>` é só para quem está logado.
+- O zip é aberto no navegador (`site/_painel/zip.js`) e os arquivos vão direto para o Supabase por URL assinada (`api/painel.js`). Mudou os controles em `scripts/importar-deck.py`? Mude também `lib/controles.js`.
+- Variáveis na Vercel (produção): `SUPABASE_URL` e `SUPABASE_SERVICE_KEY` (service_role). Cópia local em `.env-supabase` (fora do git). Sem elas o painel mostra o aviso e só o estático funciona.
+- O cron diário `api/manter-ativo` (vercel.json) evita que o Supabase gratuito pause por inatividade.
+- Versões enviadas pelo painel não estão no git. Não apague o índice nem os buckets.
+
 ## Ao atualizar uma proposta
 Edite só a pasta daquele cliente. Nunca renomeie a pasta (o link do cliente quebraria).
 

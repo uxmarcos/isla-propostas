@@ -7,10 +7,22 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ],
-  "rewrites": []
+  "rewrites": [],
+  "crons": [
+    {
+      "path": "/api/manter-ativo",
+      "schedule": "0 12 * * *"
+    }
+  ]
 }
