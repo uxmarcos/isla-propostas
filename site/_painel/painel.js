@@ -14,6 +14,7 @@ const estaticos = new Map([...document.querySelectorAll('.card[data-slug]')].map
 let indice = {};
 let publico = '';
 let disponivel = false;
+let carregado = false;
 
 async function api(metodo, corpo) {
   const r = await fetch('/api/painel', {
@@ -201,7 +202,7 @@ function renderVersoes() {
       <li class="versao${noAr ? ' no-ar' : ''}">
         <div class="versao-info">
           <strong>${esc(fmtHora.format(new Date(v.criadaEm)))}${noAr ? '<span class="selo">No ar</span>' : ''}</strong>
-          <span>${esc(v.assunto)}${v.slides ? ` · ${v.slides} slides` : ''} · por ${esc(v.por)}${v.nomeZip ? ` · ${esc(v.nomeZip)}` : ''}</span>
+          <span>${esc(v.assunto)}${v.slides ? ` · ${v.slides} slides` : ''}${v.recuperada ? ' · recuperada do Storage' : ` · por ${esc(v.por)}`}${v.nomeZip ? ` · ${esc(v.nomeZip)}` : ''}</span>
         </div>
         <div class="versao-acoes">
           <a class="btn btn-ghost btn-p" href="/${esc(slug)}?v=${esc(v.id)}" target="_blank" rel="noopener">Ver</a>
@@ -225,7 +226,7 @@ function renderVersoes() {
       </li>`);
   }
   $('#versoes-lista').innerHTML = linhas.join('');
-  $('#versoes-aviso').textContent = disponivel ? '' : 'Envio de versões indisponível: o Supabase ainda não está configurado na Vercel.';
+  $('#versoes-aviso').textContent = !carregado ? 'Carregando versões…' : disponivel ? '' : 'Envio de versões indisponível: o Supabase não respondeu.';
   $('#versoes-nova').disabled = !disponivel;
 }
 dlgVersoes.addEventListener('click', async (e) => {
@@ -452,3 +453,6 @@ try {
   $('#aviso-supabase').textContent = err.message;
   $('#aviso-supabase').hidden = false;
 }
+carregado = true;
+document.body.dataset.carregado = '';
+if (dlgVersoes.open) renderVersoes();

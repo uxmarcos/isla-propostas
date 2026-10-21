@@ -6,8 +6,10 @@
 //   POST /api/painel { acao: 'confirmar', slug, versao, arquivos, cliente, assunto, tipo, slides, nomeZip }
 //   POST /api/painel { acao: 'publicar',  slug, versao }   versao 'original' volta para a pasta do repositório
 //   POST /api/painel { acao: 'excluir',   slug, versao }   não exclui a versão que está no ar
+// O registro das versões (lib/registro.js) é um log: publicar não apaga nada, só excluir apaga.
 import { usuarioDaSessao } from '../lib/sessao.js';
-import { apagar, existe, garantirBuckets, lerIndice, salvarIndice, supabaseConfigurado, urlDeEnvio, urlPublica } from '../lib/supabase.js';
+import { existe, garantirBuckets, supabaseConfigurado, urlDeEnvio, urlPublica } from '../lib/supabase.js';
+import { excluirVersao, lerApresentacao, lerTodas, publicar, registrarVersao } from '../lib/registro.js';
 
 // Rotas do próprio site que não podem virar slug.
 const RESERVADOS = new Set(['api', 'login', 'sair', 'index', 'painel', '_painel', '_vercel', '404']);
@@ -28,6 +30,13 @@ function novaVersao() {
 
 const texto = (v, max = 120) => String(v || '').trim().slice(0, max);
 
+// Garante a versão recém-registrada na resposta, mesmo que a leitura ainda traga a cópia anterior dela.
+function comVersao(ap, registro) {
+  const versoes = [registro, ...ap.versoes.filter((v) => v.id !== registro.id)].sort((a, b) => b.criadaEm.localeCompare(a.criadaEm));
+  const { cliente, assunto, tipo, slides } = registro;
+  return { ...ap, cliente, assunto, tipo, slides, atual: registro.id, versoes };
+}
+
 async function autenticar(request) {
   const usuario = await usuarioDaSessao(request);
   if (!usuario) return { resposta: erro('Faça login de novo.', 401) };
@@ -38,7 +47,7 @@ async function autenticar(request) {
 export async function GET(request) {
   const { usuario, resposta } = await autenticar(request);
   if (resposta) return resposta;
-  return json({ usuario, publico: urlPublica(''), ...(await lerIndice()) });
+  return json({ usuario, publico: urlPublica(''), apresentacoes: await lerTodas() });
 }
 
 export async function POST(request) {
@@ -67,46 +76,37 @@ export async function POST(request) {
     }
 
     const versao = String(corpo.versao || '');
-    const indice = await lerIndice();
-    const ap = indice.apresentacoes[slug];
 
     if (corpo.acao === 'confirmar') {
       if (!/^v\d{14}-[0-9a-f]{6}$/.test(versao)) return erro('Versão inválida.');
       if (!(await existe(`${slug}/${versao}/index.html`))) return erro('O envio não terminou: index.html não chegou ao Supabase.');
-      const dados = {
+      const registro = {
+        id: versao, criadaEm: new Date().toISOString(), por: usuario, nomeZip: texto(corpo.nomeZip, 200),
         cliente: texto(corpo.cliente) || slug,
         assunto: texto(corpo.assunto) || 'Proposta',
         tipo: corpo.tipo === 'pagina' ? 'pagina' : 'deck',
         slides: Math.max(0, Math.min(500, Number(corpo.slides) || 0)),
-      };
-      const registro = {
-        id: versao, criadaEm: new Date().toISOString(), por: usuario, nomeZip: texto(corpo.nomeZip, 200), ...dados,
         arquivos: (Array.isArray(corpo.arquivos) ? corpo.arquivos : []).map(String).filter((a) => CAMINHO.test(a)).slice(0, MAX_ARQUIVOS),
       };
-      indice.apresentacoes[slug] = { ...(ap || { versoes: [] }), ...dados, atual: versao, versoes: [registro, ...(ap ? ap.versoes : [])] };
-      await salvarIndice(indice);
-      return json({ ok: true, apresentacao: indice.apresentacoes[slug] });
+      await registrarVersao(slug, registro);
+      await publicar(slug, versao, usuario);
+      return json({ ok: true, apresentacao: comVersao(await lerApresentacao(slug), registro) });
     }
 
+    const ap = await lerApresentacao(slug);
     if (!ap) return erro('Essa apresentação não tem versões enviadas pelo painel.', 404);
 
     if (corpo.acao === 'publicar') {
-      const v = versao === 'original' ? null : ap.versoes.find((x) => x.id === versao);
-      if (versao !== 'original' && !v) return erro('Versão não encontrada.', 404);
-      ap.atual = v ? v.id : null;
-      if (v) Object.assign(ap, { cliente: v.cliente, assunto: v.assunto, tipo: v.tipo, slides: v.slides });
-      await salvarIndice(indice);
-      return json({ ok: true, apresentacao: ap });
+      if (versao !== 'original' && !ap.versoes.some((x) => x.id === versao)) return erro('Versão não encontrada.', 404);
+      await publicar(slug, versao, usuario);
+      return json({ ok: true, apresentacao: await lerApresentacao(slug) });
     }
 
     if (corpo.acao === 'excluir') {
-      const v = ap.versoes.find((x) => x.id === versao);
-      if (!v) return erro('Versão não encontrada.', 404);
+      if (!ap.versoes.some((x) => x.id === versao)) return erro('Versão não encontrada.', 404);
       if (ap.atual === versao) return erro('Essa é a versão no ar. Publique outra antes de excluir.');
-      if (v.arquivos && v.arquivos.length) await apagar(v.arquivos.map((a) => `${slug}/${versao}/${a}`));
-      ap.versoes = ap.versoes.filter((x) => x.id !== versao);
-      await salvarIndice(indice);
-      return json({ ok: true, apresentacao: ap });
+      await excluirVersao(slug, versao);
+      return json({ ok: true, apresentacao: await lerApresentacao(slug) });
     }
 
     return erro('Ação desconhecida.');

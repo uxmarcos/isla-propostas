@@ -6,7 +6,8 @@
 // Variáveis de ambiente: veja lib/sessao.js e lib/supabase.js. Sem as do Supabase, só o estático funciona.
 import { next } from '@vercel/functions';
 import { COOKIE, DURACAO, acessos, assinar, configurado, igual, usuarioDaSessao } from './lib/sessao.js';
-import { lerIndice, supabaseConfigurado, urlPublica } from './lib/supabase.js';
+import { supabaseConfigurado, urlPublica } from './lib/supabase.js';
+import { versaoNoAr } from './lib/registro.js';
 import { aplicarControles } from './lib/controles.js';
 
 export const config = {
@@ -21,12 +22,15 @@ function redirecionar(url, request, cookie) {
   return new Response(null, { status: 303, headers });
 }
 
-// O índice muda pouco: guarda por alguns segundos em cada instância para não buscar a cada visita.
-let cache = { em: 0, indice: null };
-async function indice() {
-  if (cache.indice && Date.now() - cache.em < 15000) return cache.indice;
-  cache = { em: Date.now(), indice: await lerIndice() };
-  return cache.indice;
+// Guarda a versão no ar por alguns segundos em cada instância, para não consultar a cada visita.
+// Link sem versão no painel (o caso das propostas estáticas) fica menos tempo, para um envio novo aparecer logo.
+const cache = new Map();
+async function noAr(slug) {
+  const c = cache.get(slug);
+  if (c && Date.now() - c.em < (c.versao === undefined ? 5000 : 15000)) return c.versao;
+  const versao = await versaoNoAr(slug);
+  cache.set(slug, { em: Date.now(), versao });
+  return versao;
 }
 
 async function servirApresentacao(request, slug) {
@@ -34,23 +38,21 @@ async function servirApresentacao(request, slug) {
   const url = new URL(request.url);
   const pedida = url.searchParams.get('v');
   const miniatura = url.searchParams.has('miniatura');
-  let ap;
-  try {
-    ap = (await indice()).apresentacoes[slug];
-  } catch (e) {
-    console.error('índice indisponível, servindo o estático', e.message);
-    return null;
-  }
-  if (!ap) return null;
-
-  let versao = ap.atual;
   const privado = Boolean(pedida);
+  let versao;
   if (pedida) {
     if (!(await usuarioDaSessao(request))) return redirecionar('/login', request);
-    if (pedida === 'original') return null;
-    versao = ap.versoes.some((v) => v.id === pedida) ? pedida : null;
+    if (pedida === 'original' || !/^v\d{14}-[0-9a-f]{6}$/.test(pedida)) return null;
+    versao = pedida;
+  } else {
+    try {
+      versao = await noAr(slug);
+    } catch (e) {
+      console.error('registro indisponível, servindo o estático', e.message);
+      return null;
+    }
   }
-  if (!versao) return null; // sem versão publicada: fica o estático
+  if (!versao) return null; // sem versão no painel, ou a Original está no ar: fica o estático
 
   const r = await fetch(urlPublica(`${slug}/${versao}/index.html`));
   if (!r.ok) {
